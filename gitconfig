@@ -1,0 +1,22 @@
+# vim: ft=gitconfig
+
+[user]
+	name = NonWonderDog
+	email = nonwonderdog@gmail.com
+[color]
+	ui = auto
+[core]
+	quotepath = off
+	excludesfile = ~/.gitignore
+[diff]
+	tool = vimdiff
+	guitool = gvimdiff
+	prompt = false
+[merge]
+	tool = vimdiff
+	guitool = gvimdiff
+	conflictstyle = diff3
+	prmopt = false
+[format]
+	pretty = %C(bold blue)%h%C(reset)%C(auto)%d %C(green)%ar %C(dim yellow)%an%C(reset)\n        %s
+

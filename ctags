@@ -1,0 +1,5 @@
+--fields=+l
+--c-kinds=+p
+--c++-kinds=+p
+--langmap=c++:+.pde.ino
+--fields=+iaS

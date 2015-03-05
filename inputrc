@@ -1,0 +1,38 @@
+# use visible bell
+set bell-style visible
+
+# enable unicode
+set meta-flag on
+set input-meta on
+set output-meta on
+set convert-meta off
+
+# ignore case in completions
+set completion-ignore-case on
+
+# show all completions instead of beeping first
+set show-all-if-ambiguous on
+
+# show completion types
+set mark-directories on
+set visible-stats on
+
+# ask before flooding the terminal with completions
+set completion-query-items 40
+
+# use up/down history search in ALL readline applications
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+
+# make sure left/right/home/end still work normally
+"\e[D": backward-char
+"\e[C": forward-char
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+# Use vi-mode
+#set editing-mode vi
+
+# show vi-mode in the prompt
+#set show-mode-in-prompt on
+
