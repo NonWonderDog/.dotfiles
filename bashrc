@@ -15,12 +15,21 @@ esac
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
+# don't put ls, bf, fg, or exit calls in history
+HISTIGNORE="ls:ls *:[bf]g:exit" 
+
 # append to the history file, don't overwrite it
 shopt -s histappend
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=10000
 HISTFILESIZE=20000
+
+# ignore first two ^D keypresses
+IGNOREEOF=2
+
+# fix minor typos in cd
+shopt -s cdspell
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

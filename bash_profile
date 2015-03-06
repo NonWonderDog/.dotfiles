@@ -1,4 +1,6 @@
 #!/bin/bash
+# ~/.bash_profile: executed by bash(1) for login shells.
+
 # include .bashrc
 # msysgit does this automatically out of pure condescension, so check that it 
 # hasn't already been sourced.
