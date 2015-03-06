@@ -27,8 +27,8 @@ mkdir $olddir -Force > null
 # in $files
 write-host "Moving any existing dotfiles from $HOME to $olddir"
 foreach ($file in $files) {
-    if (test-path $HOME\$file) {
-        move-item $HOME\$file $olddir
+    if (test-path $HOME\.$file) {
+        move-item $HOME\.$file $olddir
     }
 }
 
