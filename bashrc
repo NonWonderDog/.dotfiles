@@ -68,29 +68,15 @@ man() {
         man "$@"
 }
 
-export LESS="-Ri"
-
-# use less for paging in ack searches
-alias ack='\ack --pager=less\ -XF'
-alias ag='\ag --pager=less\ -XF'
-
 # use colors in minicom
 export MINICOM="-c on"
 
 # use vim as the man pager
 #export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
 
-# the most important alias for vim users
-alias :q='exit'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+# set default options for less
+export LESS=-FRSXi
+export LESSCHARSET=utf-8
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
