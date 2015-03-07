@@ -20,7 +20,13 @@ alias visudo='sudo visudo'
 alias info='info --vi-keys'
 
 # ls and grep color support
-alias ls='ls --color=auto'
+# on Windows we also have to tell `ls` to print all characters
+if [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    alias ls='ls --color=auto --show-control-chars'
+else
+    alias ls='ls --color=auto'
+fi
+
 if grep --color "a" <<<"a" &>/dev/null; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
