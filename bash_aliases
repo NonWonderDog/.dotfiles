@@ -22,9 +22,9 @@ alias info='info --vi-keys'
 # ls and grep color support
 # on Windows we also have to tell `ls` to print all characters
 if [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
-    alias ls='ls --color=auto --show-control-chars'
+    alias ls='ls -F --color=auto --show-control-chars'
 else
-    alias ls='ls --color=auto'
+    alias ls='ls -F --color=auto'
 fi
 
 if grep --color "a" <<<"a" &>/dev/null; then
@@ -36,7 +36,6 @@ fi
 # Ubuntu ls aliases
 alias ll='ls -alF'
 alias la='ls -A'
-alias l='ls -CF'
 
 # Ubuntu "alert" alias.
 #   sleep 10; alert
