@@ -1,5 +1,3 @@
-# vim: ft=gitconfig
-
 [user]
 	name = NonWonderDog
 	email = nonwonderdog@gmail.com
@@ -19,4 +17,6 @@
 	prmopt = false
 [format]
 	pretty = %C(bold blue)%h%C(reset)%C(auto)%d %C(green)%ar %C(dim yellow)%an%C(reset)\n        %s
+
+# vim: ft=gitconfig
 
