@@ -16,7 +16,7 @@ function pauseQuit
 
 ## Main Program
 $dir = get-item (split-path -parent $MyInvocation.MyCommand.Path)
-$files = @("bash_profile","bashrc","bash_aliases","inputrc","vimrc","ctags","gitconfig")
+$files = @("bash_profile","bashrc","bash_aliases","inputrc","ctags","gitconfig")
 $olddir = join-path $HOME .dotfiles_old
 
 # create dotfiles_old in home dir
