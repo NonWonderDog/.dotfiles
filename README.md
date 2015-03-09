@@ -19,7 +19,7 @@ Install - Windows
 -----------------
 On windows, run the `install.ps1` powershell script as admin.  The batch file 
 `install.bat` will do this for you.  This will create symbolic links in your 
-home directory, just like on Linux.  Explorer and msysgit's `ls` command do 
-a terrible job communicating that these are symlinks (they just show them as 
-0-byte files), but they work just as well.
+home directory, just like on Linux.  Explorer should show these with a link 
+icon, but the link icon is fairly low priority.  If you have both TortoiseGit 
+and OneDrive installed they may not show up.
 
