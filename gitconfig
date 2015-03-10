@@ -4,6 +4,7 @@
 [color]
 	ui = auto
 [core]
+	editor = vim
 	quotepath = off
 	excludesfile = ~/.gitignore
 [diff]
@@ -17,6 +18,8 @@
 	prmopt = false
 [format]
 	pretty = %C(bold blue)%h%C(reset)%C(auto)%d %C(green)%ar %C(dim yellow)%an%C(reset)\n        %s
+[push]
+	default = simple
 
 # vim: ft=gitconfig
 
