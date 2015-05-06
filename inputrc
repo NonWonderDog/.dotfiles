@@ -31,9 +31,9 @@ set completion-query-items 40
 "\e[4~": end-of-line
 
 # Use vi-mode
-#set editing-mode vi
-#set keymap vi
+set editing-mode vi
+set keymap vi
 
-# show vi-mode in the prompt
-#set show-mode-in-prompt on
+# show vi-mode in the prompt (bash 4.3, readline 6.3)
+# set show-mode-in-prompt on
 
