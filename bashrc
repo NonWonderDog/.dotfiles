@@ -144,7 +144,7 @@ set_prompt_pre () {
     local prompt=""
 
     # Windows: Show user@host in blue for normal user, red for administrator
-    net session >nul 2>&1;
+    net session >/dev/null 2>&1;
     if [ $? -eq 0 ]; then
         prompt+=$bred;
     else
@@ -188,7 +188,7 @@ set_prompt_post () {
 
     # show $ for normal user, # for root
     local prompt_char=""
-    net session >nul 2>&1;
+    net session >/dev/null 2>&1;
     if [ $? -eq 0 ]; then
         prompt_char='#';
     else
