@@ -1,10 +1,16 @@
-# All files use unix line endings by default
-* eol=lf
+# Use unix line endings on run-control files
+bashrc eol=lf
+bash_aliases eol=lf
+bash_profile eol=lf
+ctags eol=lf
+ghci eol=lf
+gitconfig eol=lf
+inputrc eol=lf
+
+# use unix line endings on install script
+install eol=lf
 
 # Windows install files use Windows line endings
 *.bat eol=crlf
 *.ps1 eol=crlf
-
-# Treat the readme as text
-*.md text
 
