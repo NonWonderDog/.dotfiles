@@ -1,0 +1,10 @@
+# All files use unix line endings by default
+* eol=lf
+
+# Windows install files use Windows line endings
+*.bat eol=crlf
+*.ps1 eol=crlf
+
+# Treat the readme as text
+*.md text
+
