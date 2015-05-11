@@ -23,8 +23,7 @@ home directory, just like on Linux.  Explorer should show these with a link
 icon, as if they were shortcuts.
 
 The Haskell interpreter ghci doesn't read the `$HOME/.ghci` file except when 
-run from a Unix shell.  It works in CYGWIN and MSYS, but they have unrelated 
-issues with Control-C.  To run ghci from the windows command shell (which is 
-recommended), a link to `.dotfiles\ghci` must be made at 
-`%APPDATA%\ghc\ghci.conf` manually.
+run from a Unix shell.  In order to allow ghci to be run from the windows 
+command shell (which is recommended due to Control-C issues), a link to 
+`.dotfiles\ghci` will also be made at `%APPDATA%\ghc\ghci.conf`.
 

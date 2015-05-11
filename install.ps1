@@ -36,6 +36,10 @@ foreach ($file in $files) {
     cmd /c mklink "$HOME\.$file" "$dir\$file"
 }
 
+## Extra installs for Windows-specific files
+# native ghci uses %APPDATA%/ghc/ghci.conf instead of ~/.ghci
+cmd /c mklink "$env:APPDATA\ghc\ghci.conf" "ghci"
+
 write-host "Done."
 pauseQuit
 
