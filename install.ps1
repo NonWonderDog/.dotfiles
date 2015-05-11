@@ -39,6 +39,8 @@ foreach ($file in $files) {
 ## Extra installs for Windows-specific files
 # native ghci uses %APPDATA%/ghc/ghci.conf instead of ~/.ghci
 cmd /c mklink "$env:APPDATA\ghc\ghci.conf" "$dir\ghci"
+# ConEmu config goes in %APPDATA%
+cmd /c mklink "$env:APPDATA\ConEmu.xml" "$dir\ConEmu.xml"
 
 write-host "Done."
 pauseQuit
