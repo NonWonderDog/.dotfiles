@@ -39,11 +39,10 @@ alias la='ls -A'
 
 # `cd` aliases for ease of use
 alias cd..="cd .."
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-alias .....="cd ../../../.."
-alias ......="cd ../../../../.."
+alias ...="../.."
+alias ....="../../.."
+alias .....="../../../.."
+alias ......="../../../../.."
 
 # Ubuntu "alert" alias.
 #   sleep 10; alert

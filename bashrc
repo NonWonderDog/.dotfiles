@@ -52,15 +52,17 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# enable color support
-alias ls='ls --color=auto'
-if grep --color "a" <<<"a" &>/dev/null; then
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+# use colors in minicom
+export MINICOM="-c on"
 
-# use colors in less
+# use vim as the man pager
+#export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+
+# set default options for less
+export LESS=-FRSXi
+export LESSCHARSET=utf-8
+
+# use colors in man pages
 man() {
     env \
         LESS_TERMCAP_mb=$'\E[01;31m' \
@@ -72,16 +74,6 @@ man() {
         LESS_TERMCAP_us=$'\E[01;34m' \
         man "$@"
 }
-
-# use colors in minicom
-export MINICOM="-c on"
-
-# use vim as the man pager
-#export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
-
-# set default options for less
-export LESS=-FRSXi
-export LESSCHARSET=utf-8
 
 # set editor to vim
 export VISUAL=vim
