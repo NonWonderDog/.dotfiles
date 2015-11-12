@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2015-05-11 15:14:21" build="150504">
+		<key name=".Vanilla" modified="2015-11-12 10:37:03" build="150813c">
 			<value name="SingleInstance" type="hex" data="01"/>
 			<value name="KeyboardHooks" type="hex" data="01"/>
 			<value name="UseInjects" type="hex" data="01"/>
@@ -11,19 +11,19 @@
 			<value name="Update.UseBuilds" type="hex" data="03"/>
 			<value name="FontUseDpi" type="hex" data="01"/>
 			<value name="FontUseUnits" type="hex" data="00"/>
-			<value name="FontSize" type="dword" data="00000010"/>
+			<value name="FontSize" type="dword" data="0000000e"/>
 			<value name="StatusFontHeight" type="dword" data="0000000e"/>
 			<value name="TabFontHeight" type="dword" data="00000010"/>
-			<value name="UseCurrentSizePos" type="hex" data="01"/>
+			<value name="UseCurrentSizePos" type="hex" data="00"/>
 			<value name="WindowMode" type="dword" data="0000051f"/>
-			<value name="ConWnd Width" type="dword" data="00000070"/>
-			<value name="ConWnd Height" type="dword" data="00000020"/>
+			<value name="ConWnd Width" type="dword" data="00000084"/>
+			<value name="ConWnd Height" type="dword" data="0000002b"/>
 			<value name="Cascaded" type="hex" data="01"/>
 			<value name="IntegralSize" type="hex" data="00"/>
-			<value name="ConWnd X" type="dword" data="fffff9d2"/>
-			<value name="ConWnd Y" type="dword" data="ffffffee"/>
+			<value name="ConWnd X" type="dword" data="000001c9"/>
+			<value name="ConWnd Y" type="dword" data="00000069"/>
 			<value name="16bit Height" type="dword" data="00000000"/>
-			<value name="AutoSaveSizePos" type="hex" data="01"/>
+			<value name="AutoSaveSizePos" type="hex" data="00"/>
 			<value name="StartType" type="hex" data="00"/>
 			<value name="CmdLine" type="string" data=""/>
 			<value name="StartTasksFile" type="string" data=""/>
@@ -109,11 +109,12 @@
 			<value name="SaveCmdHistory" type="hex" data="01"/>
 			<value name="CmdLineHistory" type="multi">
 				<line data="{bash}"/>
-				<line data="{ghci::cabal repl}"/>
+				<line data="{yotta}"/>
 				<line data="{Shells::cmd}"/>
+				<line data="{Shells::cmd (Admin)}"/>
+				<line data="{ghci::cabal repl}"/>
 				<line data="{ghci::cabal repl test}"/>
 				<line data="{ghci::ghci}"/>
-				<line data="{Shells::cmd (Admin)}"/>
 				<line data="{ghci}"/>
 				<line data="{Shells::PowerShell}"/>
 				<line data="{Shells::PowerShell (Admin)}"/>
@@ -561,9 +562,9 @@
 			<value name="DndLKey" type="hex" data="00"/>
 			<value name="DndRKey" type="hex" data="a2"/>
 			<value name="WndDragKey" type="dword" data="00121101"/>
-			<key name="Tasks" modified="2015-05-01 10:54:42" build="150420">
-				<value name="Count" type="dword" data="0000000a"/>
-				<key name="Task1" modified="2015-05-01 10:54:42" build="150420">
+			<key name="Tasks" modified="2015-11-12 09:43:02" build="150813c">
+				<value name="Count" type="dword" data="0000000b"/>
+				<key name="Task1" modified="2015-11-12 09:43:02" build="150813c">
 					<value name="Name" type="string" data="{Shells::cmd}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -572,7 +573,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task2" modified="2015-05-01 10:54:42" build="150420">
+				<key name="Task2" modified="2015-11-12 09:43:02" build="150813c">
 					<value name="Name" type="string" data="{Shells::cmd (Admin)}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -581,7 +582,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task3" modified="2015-05-01 10:54:42" build="150420">
+				<key name="Task3" modified="2015-11-12 09:43:02" build="150813c">
 					<value name="Name" type="string" data="{Shells::PowerShell}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -590,7 +591,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task4" modified="2015-05-01 10:54:42" build="150420">
+				<key name="Task4" modified="2015-11-12 09:43:02" build="150813c">
 					<value name="Name" type="string" data="{Shells::PowerShell (Admin)}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -599,7 +600,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task5" modified="2015-05-01 10:54:42" build="150420">
+				<key name="Task5" modified="2015-11-12 09:43:02" build="150813c">
 					<value name="Name" type="string" data="{Shells::cmd 64/32}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -609,7 +610,7 @@
 					<value name="Active" type="dword" data="00000001"/>
 					<value name="Count" type="dword" data="00000002"/>
 				</key>
-				<key name="Task6" modified="2015-05-01 10:54:42" build="150420">
+				<key name="Task6" modified="2015-11-12 09:43:02" build="150813c">
 					<value name="Name" type="string" data="{SDK::WinSDK v7.1}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -618,7 +619,7 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task7" modified="2015-05-01 10:54:42" build="150420">
+				<key name="Task7" modified="2015-11-12 09:44:27" build="150813c">
 					<value name="Name" type="string" data="{bash}"/>
 					<value name="Flags" type="dword" data="00000003"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -627,16 +628,16 @@
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task8" modified="2015-05-01 10:54:42" build="150420">
+				<key name="Task8" modified="2015-11-12 09:44:27" build="150813c">
 					<value name="Name" type="string" data="{ghci::ghci}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
-					<value name="GuiArgs" type="string" data=""/>
+					<value name="GuiArgs" type="string" data="/icon &quot;ghci.exe&quot;"/>
 					<value name="Cmd1" type="string" data="chcp 65001 &amp; ghci"/>
 					<value name="Active" type="dword" data="00000000"/>
 					<value name="Count" type="dword" data="00000001"/>
 				</key>
-				<key name="Task9" modified="2015-05-01 10:54:42" build="150420">
+				<key name="Task9" modified="2015-11-12 09:44:27" build="150813c">
 					<value name="Name" type="string" data="{ghci::cabal repl}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -646,7 +647,7 @@
 					<value name="Count" type="dword" data="00000001"/>
 					<value name="Cmd2" type="string" data="title cabal repl &amp; cd %cabalroot% &amp; chcp 65001 &amp; cabal repl"/>
 				</key>
-				<key name="Task10" modified="2015-05-01 10:54:42" build="150420">
+				<key name="Task10" modified="2015-11-12 09:44:27" build="150813c">
 					<value name="Name" type="string" data="{ghci::cabal repl test}"/>
 					<value name="Flags" type="dword" data="00000000"/>
 					<value name="Hotkey" type="dword" data="00000000"/>
@@ -659,15 +660,24 @@
 					<value name="Cmd4" type="string" data="chcp 65001 &amp;"/>
 					<value name="Cmd5" type="string" data="cabal repl test"/>
 				</key>
+				<key name="Task11" modified="2015-11-12 10:33:30" build="150813c">
+					<value name="Name" type="string" data="{yotta}"/>
+					<value name="Flags" type="dword" data="00000000"/>
+					<value name="Hotkey" type="dword" data="00000000"/>
+					<value name="GuiArgs" type="string" data="/icon &quot;%YOTTA_INSTALL_LOCATION%\p.ico&quot;"/>
+					<value name="Active" type="dword" data="00000000"/>
+					<value name="Count" type="dword" data="00000001"/>
+					<value name="Cmd1" type="string" data="set CHERE_INVOKING=1 &amp; set PATH=%YOTTA_PATH%;%PATH% &amp; sh.exe --login -i"/>
+				</key>
 			</key>
-			<key name="Apps" modified="2015-05-01 10:54:42" build="150420">
+			<key name="Apps" modified="2015-11-12 10:33:30" build="150813c">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
-			<key name="Colors" modified="2015-05-01 10:54:42" build="150420">
+			<key name="Colors" modified="2015-11-12 10:33:30" build="150813c">
 				<value name="Count" type="dword" data="00000000"/>
 			</key>
 			<value name="Notification.StopBuzzingDate" type="string" data="2015-3-27"/>
-			<key name="HotKeys" modified="2015-05-01 10:54:42" build="150420">
+			<key name="HotKeys" modified="2015-11-12 09:43:02" build="150813c">
 				<value name="KeyMacroVersion" type="hex" data="02"/>
 				<value name="Multi.Modifier" type="dword" data="0000005b"/>
 				<value name="Multi.ArrowsModifier" type="dword" data="0000005b"/>
@@ -844,7 +854,13 @@
 				<value name="DndLKey" type="hex" data="00"/>
 				<value name="DndRKey" type="hex" data="a2"/>
 				<value name="WndDragKey" type="dword" data="00121101"/>
+				<value name="Multi.Unfasten" type="dword" data="00000000"/>
 			</key>
+			<value name="DefaultTerminalDebugLog" type="hex" data="00"/>
+			<value name="DownShowExOnTopMessage" type="hex" data="00"/>
+			<value name="EnvironmentSet" type="multi"/>
+			<value name="Update.InetTool" type="hex" data="00"/>
+			<value name="Update.InetToolCmd" type="string" data=""/>
 		</key>
 	</key>
 </key>
