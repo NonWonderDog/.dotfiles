@@ -15,7 +15,7 @@ function pauseQuit
 }
 
 ## Main Program
-$dir = get-item (split-path -parent $MyInvocation.MyCommand.Path)
+$dir = get-item -Force (split-path -parent $MyInvocation.MyCommand.Path)
 $files = @("bash_profile","bashrc","bash_aliases","inputrc","ctags","gitconfig","ghci")
 $olddir = join-path $HOME .dotfiles_old
 
