@@ -13,9 +13,6 @@ if hash chcp.com 2>/dev/null; then
     chcp.com 65001
 fi
 
-# create a variable to signify that this ran, for msysgit compatibility
-BASHRC=
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -79,6 +76,9 @@ man() {
 export VISUAL=vim
 export EDITOR=$VISUAL
 
+# set browser to firefox
+export BROWSER=firefox
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -135,15 +135,16 @@ set_prompt_pre () {
 
     local prompt=""
 
-    # Windows: Show user@host in blue for normal user, red for administrator
+    # Windows: Show user@host in green for normal user, red for administrator
     net session >/dev/null 2>&1;
     if [ $? -eq 0 ]; then
-        prompt+=$bred;
+        prompt+=$red;
     else
-        prompt+=$bgreen;
+        prompt+=$green;
     fi
     prompt+="\u@\h"
-    prompt+=$reset':'
+    [[ ! -z "$MSYSTEM" ]] && prompt+=$purple" $MSYSTEM"
+    prompt+=$reset' '
 
     echo "$prompt"
 }
@@ -155,7 +156,7 @@ set_prompt_dynamic () {
 
     local reset="\[\e[00m\]"
     local red="\[\e[0;31m\]"
-    local bblue="\[\e[1;34m\]"
+    local bgreen="\[\e[1;32m\]"
 
     # show (error code) for nonzero return
     if [ $returncode -ne 0 ]; then
@@ -163,7 +164,7 @@ set_prompt_dynamic () {
     fi
 
     # current directory
-    prompt+="$bblue\w$reset"
+    prompt+="$bgreen\w$reset"
 
     echo "$prompt"
 }
@@ -171,6 +172,8 @@ set_prompt_dynamic () {
 # runs once, for prompt after git branch
 set_prompt_post () {
     local reset="\[\e[00m\]"
+    local red="\[\e[0;31m\]"
+    local green="\[\e[0;32m\]"
     local bblue="\[\e[1;34m\]"
 
     local prompt=""
@@ -182,11 +185,11 @@ set_prompt_post () {
     local prompt_char=""
     net session >/dev/null 2>&1;
     if [ $? -eq 0 ]; then
-        prompt_char='#';
+        prompt_char=$red'#';
     else
-        prompt_char='$';
+        prompt_char=$green'$';
     fi
-    prompt+=$bblue$prompt_char$reset' '
+    prompt+=$prompt_char$reset' '
 
     echo "$prompt"
 }
@@ -209,7 +212,23 @@ export GIT_PS1_SHOWCOLORHINTS=1	# requires that __git_ps1 is used as PROMPT_COMM
 # 1: PS1 string before git status
 # 2: PS1 string after git status
 # 3: git status format (default " (%s)")
+if test -z "$WINELOADERNOEXEC"
+then
+	GIT_EXEC_PATH="$(git --exec-path 2>/dev/null)"
+	COMPLETION_PATH="${GIT_EXEC_PATH%/libexec/git-core}"
+	COMPLETION_PATH="${COMPLETION_PATH%/lib/git-core}"
+	COMPLETION_PATH="$COMPLETION_PATH/share/git/completion"
+	if test -f "$COMPLETION_PATH/git-prompt.sh"
+	then
+		. "$COMPLETION_PATH/git-completion.bash"
+		. "$COMPLETION_PATH/git-prompt.sh"
+	fi
+fi
 export PROMPT_COMMAND="__git_ps1 \"$(set_prompt_title)$(set_prompt_pre)\$(set_prompt_dynamic)\" '$(set_prompt_post)' '$(set_prompt_gitformat)'"
 
 PS2='\[\e[1;34m\]>\[\e[00m\]'
 
+# Launch tmux
+if hash tmux 2>/dev/null; then
+    [[ -z "$TMUX" ]] && exec tmux
+fi
