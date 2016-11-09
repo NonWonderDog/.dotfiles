@@ -1,12 +1,3 @@
-# Use unix line endings on run-control files
-bashrc eol=lf
-bash_aliases eol=lf
-bash_profile eol=lf
-ctags eol=lf
-ghci eol=lf
-gitconfig eol=lf
-inputrc eol=lf
-
 # use unix line endings on install script
 install eol=lf
 
