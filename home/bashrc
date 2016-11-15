@@ -79,6 +79,9 @@ export EDITOR=$VISUAL
 # set browser to firefox
 export BROWSER=firefox
 
+# make sure LS_COLORS gets set
+eval $(dircolors)
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
@@ -230,5 +233,5 @@ PS2='\[\e[1;34m\]>\[\e[00m\]'
 
 # Launch tmux
 if hash tmux 2>/dev/null; then
-    [[ -z "$TMUX" ]] && exec tmux
+    [[ -z "$TMUX" ]] && { tmux attach || exec tmux new-session && exit;}
 fi
