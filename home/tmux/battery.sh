@@ -10,7 +10,11 @@ if [[ -n "$batt" ]]; then
     else
         i=$(wmic PATH Win32_Battery Get EstimatedRunTime | awk '/^[0-9]/ {print $1}')
         ((min=i%60, hrs=i/60))
-        string=$(printf " %3d%% (%d:%02d) " $batt $hrs $min)
+        if [[ $hrs -ge 10 ]]; then
+            string=$(printf "    %3d%%     " $batt)
+        else
+            string=$(printf " %3d%% (%d:%02d) " $batt $hrs $min)
+        fi
         ((level=${#string}*($batt+5)/100))
         if [[ $batt -gt 20 ]]; then
             string=$(echo "$string" | sed -e 's/\(.\{'$level'\}\)/\1#[bg=colour23, fg=black]/')
