@@ -124,6 +124,7 @@ set engDev https://wsmuriel.roushnet.com:8443/svn/engDev/
 # Launch tmux if interactive
 if status --is-interactive
     if [ -z "$TMUX" ]
+        # exit doesn't exit the shell in a config file
         tmux; and exec true
     end
 end
