@@ -232,6 +232,7 @@ export PROMPT_COMMAND="__git_ps1 \"$(set_prompt_title)$(set_prompt_pre)\$(set_pr
 PS2='\[\e[1;34m\]>\[\e[00m\]'
 
 # Launch tmux
+# attach to unattached session if one exists
 if hash tmux 2>/dev/null; then
-    [[ -z "$TMUX" ]] && { tmux attach || exec tmux new-session && exit;}
+    [[ -z "$TMUX" ]] && { tmux attach -t $(tmux ls | grep -v attached | head -n1 | cut -d ":" -f 1) || exec tmux new-session && exit; }
 fi
