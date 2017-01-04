@@ -119,7 +119,7 @@ function svndiff
 end
 
 # SVN Repository
-set engDev https://wsmuriel.roushnet.com:8443/svn/engDev/
+set engDev https://wsmuriel.roushnet.com:8443/svn/engDev
 
 # Launch tmux if interactive
 if status --is-interactive

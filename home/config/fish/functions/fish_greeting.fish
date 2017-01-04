@@ -1,3 +1,5 @@
 function fish_greeting
-    /usr/local/games/fortune
+    if test -e /usr/local/games/fortune
+        /usr/local/games/fortune
+    end
 end
