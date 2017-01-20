@@ -115,7 +115,7 @@ alias vwtar 'tar -tvf'
 
 # svn diff
 function svndiff
-    svn diff $argv | colordiff | less -FRSX
+    svn diff --diff-cmd colordiff | less -FRSX
 end
 
 # SVN Repository
