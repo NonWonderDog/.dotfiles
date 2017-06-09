@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <key name="Software">
 	<key name="ConEmu">
-		<key name=".Vanilla" modified="2016-11-09 15:21:53" build="161022">
+		<key name=".Vanilla" modified="2017-05-04 14:47:25" build="161206">
 			<value name="SingleInstance" type="hex" data="01"/>
 			<value name="KeyboardHooks" type="hex" data="01"/>
 			<value name="UseInjects" type="hex" data="01"/>
@@ -108,9 +108,9 @@
 			<value name="StoreTaskbarCommands" type="hex" data="00"/>
 			<value name="SaveCmdHistory" type="hex" data="01"/>
 			<value name="CmdLineHistory" type="multi">
+				<line data="{Shells::cmd (Admin)}"/>
 				<line data="{Shells::PowerShell}"/>
 				<line data="{Shells::cmd}"/>
-				<line data="{Shells::cmd (Admin)}"/>
 				<line data="{msys2::mingw32}"/>
 				<line data="{msys2::mingw64}"/>
 				<line data="{msys2::msys2}"/>

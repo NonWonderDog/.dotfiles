@@ -16,7 +16,7 @@ function pauseQuit
 
 ## Main Program
 $dir = get-item -Force (split-path -parent $MyInvocation.MyCommand.Path)
-$files = @("bash_profile","bashrc","bash_aliases","inputrc","ctags","gitconfig","ghci","tmux.conf","minttyrc","config\fish\config.fish")
+$files = @("bash_profile","bashrc","bash_aliases","clang-format","inputrc","ctags","gitconfig","ghci","tmux.conf","minttyrc","config\fish\config.fish")
 $folders = @("tmux","config\fish\functions")
 $olddir = join-path $HOME .dotfiles_old
 
