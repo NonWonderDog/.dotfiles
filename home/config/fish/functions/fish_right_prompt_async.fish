@@ -8,7 +8,7 @@ function append --description 'Append text to the end of the prompt.'
 end
 
 # Use git prompt
-append (__fish_git_prompt)
+append (__fish_git_prompt) 
 append (__fish_svn_prompt)
 append ' '
 

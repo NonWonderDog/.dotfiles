@@ -16,16 +16,12 @@ function update_fish_right_prompt --on-event fish_prompt
 		printf "\n" > $pipe
 
 		# Start the async process:
-		~/.config/fish/functions/fish_right_prompt_async.fish $caller &
+                ~/.config/fish/functions/fish_right_prompt_async.fish $caller &
 	end
 end
 
 function fish_right_prompt
-	set -l user (whoami)
-	set -l host (hostname|cut -d . -f 1)
-	set -l dir (prompt_pwd)
-
-	# Make sure we initialise the prompt the first time:
+        # Make sure we initialise the prompt the first time:
 	if not set -q _fish_prompt_update_{$caller}_init
 		set -g _fish_prompt_update_{$caller}_init
 		update_fish_right_prompt

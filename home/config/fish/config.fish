@@ -96,6 +96,8 @@ set __fish_svn_prompt_char_token_broken_color           --bold magenta
 ## Environment
 set -gx LESS "-Ri"
 set -gx MINICOM "-c on"
+set -gx SSH_ENV ~/.ssh/environment
+set -gx PATH ~/bin /c/Program\ Files\ \(x86\)/Pandoc $PATH
 
 ## Aliases
 alias visudo 'sudo visudo'
@@ -121,10 +123,16 @@ end
 # SVN Repository
 set engDev https://wsmuriel.roushnet.com:8443/svn/engDev
 
-# Launch tmux if interactive
-if status --is-interactive
-    if [ -z "$TMUX" ]
-        # exit doesn't exit the shell in a config file
-        tmux; and exec true
-    end
+# start SSH agent
+set -gx SSH_AUTH_SOCK /tmp/.ssh-socket
+ssh-add -l > /dev/null 2>&1
+if [ $status -eq 2 ]
+    start_ssh_agent
 end
+
+# Launch tmux if interactive
+# if status --is-interactive
+#     if [ -z "$TMUX" ]
+#         tmux; and exec true
+#     end
+# end
