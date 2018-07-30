@@ -94,10 +94,13 @@ set __fish_svn_prompt_char_token_broken_display         'B'
 set __fish_svn_prompt_char_token_broken_color           --bold magenta
 
 ## Environment
-set -gx LESS "-Ri"
+set -gx LESS "-RFXi"
 set -gx MINICOM "-c on"
 set -gx SSH_ENV ~/.ssh/environment
-set -gx PATH ~/bin /c/Program\ Files\ \(x86\)/Pandoc $PATH
+if set -q var
+    set -gx PATH ~/bin /c/Program\ Files\ \(x86\)/Pandoc $PATH
+    set -gx PATH ~/bin /c/Program\ Files/MiKTeX\ 2.9/miktex/bin/x64 $PATH
+end
 
 ## Aliases
 alias visudo 'sudo visudo'
@@ -122,6 +125,7 @@ end
 
 # SVN Repository
 set engDev https://wsmuriel.roushnet.com:8443/svn/engDev
+set ULA_IVF https://openproj.spacemicro.com/svn/ula-ivf
 
 # start SSH agent
 set -gx SSH_AUTH_SOCK /tmp/.ssh-socket
