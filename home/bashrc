@@ -234,5 +234,5 @@ PS2='\[\e[1;34m\]>\[\e[00m\]'
 # Launch tmux
 # attach to unattached session if one exists
 if hash tmux 2>/dev/null; then
-    [[ -z "$TMUX" ]] && { tmux attach -t $(tmux ls | grep -v attached | head -n1 | cut -d ":" -f 1) || exec tmux new-session && exit; }
+    [[ -z "$TMUX" ]] && { tmux attach -t $(tmux ls 2>/dev/null | grep -v attached | head -n1 | cut -d ":" -f 1) 2>/dev/null || tmux new-session && exit; }
 fi
