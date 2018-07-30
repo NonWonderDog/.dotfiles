@@ -97,7 +97,7 @@ set __fish_svn_prompt_char_token_broken_color           --bold magenta
 set -gx LESS "-RFXi"
 set -gx MINICOM "-c on"
 set -gx SSH_ENV ~/.ssh/environment
-if set -q var
+if set -q MSYSTEM
     set -gx PATH ~/bin /c/Program\ Files\ \(x86\)/Pandoc $PATH
     set -gx PATH ~/bin /c/Program\ Files/MiKTeX\ 2.9/miktex/bin/x64 $PATH
 end
