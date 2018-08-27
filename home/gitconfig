@@ -6,15 +6,17 @@
 [core]
 	quotepath = off
 	excludesfile = ~/.gitignore
+	autocrlf = false
 [diff]
 	tool = vimdiff
 	guitool = gvimdiff
+[difftool]
 	prompt = false
 [merge]
 	tool = vimdiff
 	guitool = gvimdiff
 	conflictstyle = diff3
-	prmopt = false
+	prompt = false
 [format]
 	pretty = %C(bold blue)%h%C(reset)%C(auto)%d %C(green)%ar %C(dim yellow)%an%C(reset)\n        %s
 [push]
