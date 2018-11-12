@@ -98,9 +98,12 @@ set -gx LESS "-RFXi"
 set -gx MINICOM "-c on"
 set -gx SSH_ENV ~/.ssh/environment
 if set -q MSYSTEM
-    set -gx PATH ~/bin /c/Program\ Files\ \(x86\)/Pandoc $PATH
-    set -gx PATH ~/bin /c/Program\ Files/MiKTeX\ 2.9/miktex/bin/x64 $PATH
+    set -gx PATH /c/Program\ Files/Pandoc $PATH
+    set -gx PATH /c/Program\ Files/MiKTeX\ 2.9/miktex/bin/x64 $PATH
 end
+
+set -gx PATH ~/.cargo/bin $PATH
+set -gx PATH ~/bin $PATH
 
 ## Aliases
 alias visudo 'sudo visudo'
