@@ -227,7 +227,7 @@ then
 		. "$COMPLETION_PATH/git-prompt.sh"
 	fi
 fi
-export PROMPT_COMMAND="__git_ps1 \"$(set_prompt_title)$(set_prompt_pre)\$(set_prompt_dynamic)\" '$(set_prompt_post)' '$(set_prompt_gitformat)'"
+PROMPT_COMMAND="__git_ps1 \"$(set_prompt_title)$(set_prompt_pre)\$(set_prompt_dynamic)\" '$(set_prompt_post)' '$(set_prompt_gitformat)'"
 
 PS2='\[\e[1;34m\]>\[\e[00m\]'
 
