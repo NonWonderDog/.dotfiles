@@ -1,19 +1,22 @@
-#!/bin/bash
-ssid=$(netsh WLAN show interfaces | awk '/^    Profile/ {for(i=3;i<=NF;++i)print $i}')
-strength=$(netsh WLAN show interfaces | awk '/^    Signal/ {sub(/%/, ""); print $3}')
-if [ -z "$ssid" ]; then
-    bar=''
-elif [ $strength -le 20 ]; then
-    bar='▁'
-elif [ $strength -le 40 ]; then
-    bar='▁▂'
-elif [ $strength -le 60 ]; then
-    bar='▁▂▃'
-elif [ $strength -le 80 ]; then
-    bar='▁▂▃▅'
-else
-    bar='▁▂▃▅▇'
-fi
+#!/bin/sh
+ret=`netsh WLAN show interfaces`
+ssid=`echo "$ret" | awk '/^    Profile/ {for(i=3;i<=NF;++i)print $i}'`
 if [ -n "$ssid" ]; then
-    echo "#[bg=colour67, fg=black]  $ssid  #[default]"
+    strength=`echo "$ret" | awk '/^    Signal/ {sub(/%/, ""); print $3}'`
+    if [ $strength -gt 60 ]; then
+        if [ $strength -gt 80 ]; then
+            bar='▁▂▃▅▇'
+        else
+            bar='▁▂▃▅ '
+        fi
+    elif [ $strength -gt 20 ]; then
+        if [ $strength -gt 40 ]; then
+            bar='▁▂▃  '
+        else
+            bar='▁▂   '
+        fi
+    else
+            bar='▁    '
+    fi
+    echo "#[fg=colour67]$bar #[bg=colour67, fg=black]  $ssid  #[default]"
 fi
