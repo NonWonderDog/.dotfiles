@@ -7,6 +7,7 @@
 	quotepath = off
 	excludesfile = ~/.gitignore
 	autocrlf = false
+	editor = vim
 [diff]
 	tool = vimdiff
 	guitool = gvimdiff
