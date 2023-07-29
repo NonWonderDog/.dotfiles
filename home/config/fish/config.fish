@@ -6,7 +6,13 @@ set -g fish_cursor_default block
 set -g fish_cursor_insert line
 set -g fish_cursor_visual block
 
-function fish_mode_prompt; end
+## Prompt colors
+set fish_color_user        green
+set fish_color_user_root   red
+set fish_color_host        green
+set fish_color_host_remote green
+set fish_color_cwd         blue
+set fish_color_cwd_root    red
 
 ## Fish git prompt
 set __fish_git_prompt_showdirtystate            1

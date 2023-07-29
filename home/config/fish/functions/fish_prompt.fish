@@ -1,83 +1,82 @@
 function fish_prompt
-    set -l last_status $status
-    if test $last_status -eq 0
-        set retc green
-    else
-        set retc red
+    #set_color normal
+    #for job in (jobs)
+    #    if not echo "$job" | grep -q fish_right_prompt_async
+    #        set_color $retc
+    #        if [ $tty = tty ]
+    #            echo -n '; '
+    #        else
+    #            echo -n '│ '
+    #        end
+    #        set_color brown
+    #        echo $job
+    #    end
+    #end
+
+    set -l normal (set_color normal)
+
+    # on MSYS prepend that to the prompt
+    if set -q MSYSTEM
+        set -l msys (set_color magenta) $MSYSTEM ' '
     end
 
-    # tty|grep -q tty; and set tty tty; or set tty pts
-    set tty pts
+    # pipestatus functions
+    # set bold on change of status
+    set -l last_pipestatus $pipestatus
+    set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
+    set -l status_bold --bold
+    set -q __fish_prompt_status_generation; or set -g __fish_prompt_status_generation $status_generation
+    if [ $__fish_prompt_status_generation = $status_generation ]
+        set bold_flag
+    end
+    set -q fish_color_status; or set -g fish_color_status red
+    set -l status_bracecolor (set_color $fish_color_status)
+    set -l status_color (set_color $bold $fish_color_status)
+    set -l prompt_status (__fish_print_pipestatus "[" "]" "|" "$status_bracecolor" "$status_color" $last_pipestatus)
 
-    set_color $retc
-    if [ $tty = tty ]
-        echo -n .-
-    else
-        echo -n '┬─'
+    # change prompt for root
+    set -l suffix '$'
+    set -l color_cwd $fish_color_cwd
+    if functions -q fish_is_root_user; and fish_is_root_user
+        if set -q fish_color_cwd_root
+            set color_cwd $fish_color_cwd_root
+        end
+        set suffix '#'
     end
-    set_color -o green
-    if test $USER = root -o $USER = toor
-        set_color -o red
-    else
-        set_color -o green
-    end
-    echo -n $USER
-    set_color -o white
-    if [ -z "$SSH_CLIENT" ]
-        set_color -o green
-    else
-        set_color -o cyan
-    end
-    echo -n @(hostname)
-    set_color normal
-    set_color magenta
-    echo -n " $MSYSTEM "
-    set_color $retc
-    if test $last_status -ne 0
-        echo -n "("$last_status")"
-    end
-    set_color -o blue
-    echo -n (pwd|sed "s=$HOME=~=")
-    set_color normal
-    
-    # Check if acpi exists
-    if not set -q __fish_nim_prompt_has_acpi
-        set -g __fish_nim_prompt_has_acpi ''
-    end
-    	
-    if test "$__fish_nim_prompt_has_acpi"
-        if [ (acpi -a 2> /dev/null | grep off) ]
-            echo -n '─['
-            set_color -o red
-            echo -n (acpi -b|cut -d' ' -f 4-)
-            set_color -o green
-            echo -n ']'
+    set -l cwd_color (set_color $color_cwd)
+
+    set -l color_user $fish_color_user
+    if functions -q fish_is_root_user; and fish_is_root_user
+        if set -q fish_color_user_root
+            set color_user $fish_color_user_root
         end
     end
+    set -l user_color (set_color $color_user)
 
-    # Line 2
-    echo
-    set_color normal
-    for job in (jobs)
-        if not echo "$job" | grep -q fish_right_prompt_async
-            set_color $retc
-            if [ $tty = tty ]
-                echo -n '; '
-            else
-                echo -n '│ '
-            end
-            set_color brown
-            echo $job
+    # fancy prompt
+    if test "$fish_key_bindings" = fish_vi_key_bindings
+        or test "$fish_key_bindings" = fish_hybrid_key_bindings
+        switch $fish_bind_mode
+            case default
+                set suffix (set_color --bold red) 'N'
+            case insert
+                #set suffix (set_color --bold green) 'I'
+            case replace_one
+                #set suffix (set_color --bold green) 'R'
+            case replace
+                set suffix (set_color --bold cyan) 'R'
+            case visual
+                set suffix (set_color --bold magenta) 'V'
         end
     end
-    set_color normal
-    set_color $retc
+    set -l tty pts
+    set -l leader $user_color '┬─'
+    set -l suffix $user_color '╰─' $suffix
     if [ $tty = tty ]
-        echo -n "'->"
-    else
-        echo -n '╰─>'
+        set -l leader $user_color ".-"
+        set -l suffix $user_color "'-" $suffix
     end
-    set_color -o green
-    echo -n '$ '
-    set_color normal
+
+    echo    -s $leader $msys (prompt_login) ' ' $cwd_color (prompt_pwd) $normal (fish_vcs_prompt) $normal ' ' $prompt_status
+    echo -n -s $suffix ' ' $normal
 end
