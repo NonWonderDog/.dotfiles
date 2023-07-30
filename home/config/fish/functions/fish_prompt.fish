@@ -2,20 +2,6 @@ function fish_prompt
     set -l last_pipestatus $pipestatus
     set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
 
-    #set_color normal
-    #for job in (jobs)
-    #    if not echo "$job" | grep -q fish_right_prompt_async
-    #        set_color $retc
-    #        if [ $tty = tty ]
-    #            echo -n '; '
-    #        else
-    #            echo -n '│ '
-    #        end
-    #        set_color brown
-    #        echo $job
-    #    end
-    #end
-
     set -l normal (set_color normal)
 
     # on MSYS prepend that to the prompt
@@ -71,13 +57,16 @@ function fish_prompt
         end
     end
     set -l tty pts
-    set -l leader $user_color '┬─'
-    set -l suffix $user_color '╰─' $suffix
+    set -l leader    $user_color '┬─'
+    set -l jobleader $user_color '│ ' (set_color brown)
+    set -l suffix    $user_color '╰─' $suffix
     if [ $tty = tty ]
-        set -l leader $user_color ".-"
-        set -l suffix $user_color "'-" $suffix
+        set -l leader    $user_color ".-"
+        set -l jobleader $user_color '; ' (set_color brown)
+        set -l suffix    $user_color "'-" $suffix
     end
 
     echo    -s $leader $msys (prompt_login) ' ' $cwd_color (prompt_pwd) $normal (fish_vcs_prompt) $normal ' ' $prompt_status
+    for job in (jobs); echo -s $jobleader $job; end
     echo -n -s $suffix ' ' $normal
 end
