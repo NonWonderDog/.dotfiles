@@ -12,10 +12,10 @@ function fish_greeting
 
     if command -q neofetch
         if test -n "$art"
-            neofetch --disable Packages --ascii "$art"
+            neofetch --ascii "$art"
             set quote ""
         else
-            neofetch --disable Packages
+            neofetch
         end
     else
         if test -n "$art"
