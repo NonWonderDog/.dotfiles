@@ -56,13 +56,13 @@ function fish_prompt
                 set suffix (set_color --bold magenta) 'V'
         end
     end
-    set -l tty pts
     set -l leader    $user_color '┬─'
     set -l jobleader $user_color '│ ' (set_color brown)
     set -l suffix    $user_color '╰─' $suffix
-    if [ $tty = tty ]
+    set -l tty pts
+    if test "$tty" = tty
         set -l leader    $user_color ".-"
-        set -l jobleader $user_color '; ' (set_color brown)
+        set -l jobleader $user_color '| ' (set_color brown)
         set -l suffix    $user_color "'-" $suffix
     end
 
