@@ -1,4 +1,7 @@
 function fish_prompt
+    set -l last_pipestatus $pipestatus
+    set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
+
     #set_color normal
     #for job in (jobs)
     #    if not echo "$job" | grep -q fish_right_prompt_async
@@ -22,8 +25,6 @@ function fish_prompt
 
     # pipestatus functions
     # set bold on change of status
-    set -l last_pipestatus $pipestatus
-    set -lx __fish_last_status $status # Export for __fish_print_pipestatus.
     set -l status_bold --bold
     set -q __fish_prompt_status_generation; or set -g __fish_prompt_status_generation $status_generation
     if [ $__fish_prompt_status_generation = $status_generation ]
