@@ -33,13 +33,13 @@ vim.keymap.set('n', '<C-j>', '<Cmd>cprev<CR>zz')
 vim.keymap.set('n', '<C-k>', '<Cmd>lnext<CR>zz')
 vim.keymap.set('n', '<C-j>', '<Cmd>lprev<CR>zz')
 
--- Nondestructive delete/visual paste
+-- Nondestructive delete
 vim.keymap.set({'n','v'}, '<Leader>d', '"_d')
-vim.keymap.set('x',       '<Leader>p', 'P') -- see "v_P", map to "_dP if not supported
 
--- Clipboard yank
+-- Clipboard access
 vim.keymap.set({'n','v'}, '<Leader>y', '"+y')
 vim.keymap.set('n',       '<Leader>Y', '"+Y')
+vim.keymap.set({'n','v'}, '<Leader>p', '"+p')
 
 -- Replace all occurances
 vim.keymap.set('n', '<Leader>*', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
