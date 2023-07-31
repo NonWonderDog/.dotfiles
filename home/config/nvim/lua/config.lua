@@ -1,12 +1,17 @@
+-- spacebar leader
+vim.g.mapleader = " "
+
 -- sessions
 vim.opt.sessionoptions = {
-    "help", "sesdir", "tabpages", "terminal", "winsize"
+    "folds", "help", "sesdir", "tabpages", "terminal", "winsize"
 }
 
 -- editing
 vim.o.splitright  = true    -- vsplit to right
+vim.o.equalalways = false   -- don't resize on split
 vim.o.virtualedit = 'block' -- allow virtual editing in Visual block mode
 vim.o.listchars   = 'tab:►─,eol:¬,trail:·,nbsp:⁃,precedes:←,extends:→'
+vim.o.scrolloff   = 8
 vim.opt.diffopt:append {'vertical'}
 
 -- search
@@ -15,7 +20,6 @@ vim.o.smartcase  = true
 
 -- fold
 vim.o.foldmethod = 'syntax'
-vim.o.foldlevelstart = 0
 vim.opt.foldopen:remove {'block'} -- don't open folds with { } motions
 
 -- indent
@@ -37,7 +41,7 @@ vim.opt.formatoptions:append('w','a')     -- format paragraphs by trailing space
 vim.opt.formatoptions:append('1','m','M') -- better line wrap
 
 vim.opt.formatoptions:append('n') -- recognize numbered lists
-vim.opt.formatlistpat:append('\\|^\\s*[*-+][\t ]\\s*') -- and bulleted lists
+vim.opt.formatlistpat:append([[\|^\s*[*-][\t ]\s*]]) -- and bulleted lists
 
 vim.o.joinspaces = true -- join sentences with two spaces
 vim.opt.cpoptions:append('J') -- move by sentences requires two periods
@@ -50,6 +54,9 @@ vim.opt.cinoptions:append {
 	'N-s', -- don't indent namespace members
 }
 
--- changing directory in netrw changes editor directory
--- fixes file operations in netrw
-vim.g.netrw_keepdir = 0
+-- netrw
+vim.g.netrw_banner = 0
+vim.g.netrw_liststyle = 3
+vim.g.netrw_browse_split = 4
+vim.g.netrw_winsize = 30
+vim.g.netrw_keepdir = 0 -- make file operations always work
