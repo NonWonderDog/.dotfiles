@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+packages=(
+    "fish"
+    "man-db"
+    "git" "ssh-tools"
+    "neovim" "diffutils" "ripgrep"
+    "cowsay" "fortune-mod" "neofetch"
+    "plantuml" "graphviz"
+)
+
+sudo pacman -S --needed ${packages[@]}

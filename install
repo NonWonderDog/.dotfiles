@@ -8,8 +8,24 @@ if [ $dir = '.' ]; then
     dir=$(pwd)
 fi
 olddir=~/.dotfiles_old # old dotfiles backup directory
-# files="bash_profile bashrc bash_aliases clang-format inputrc ctags gitconfig ghci tmux tmux.conf minttyrc config/fish/config.fish config/fish/functions config/nvim config/neofetch"
-files="clang-format inputrc gitconfig config/fish/config.fish config/fish/functions config/nvim config/neofetch"
+#"
+files=(
+    "config/fish/config.fish"
+    "config/fish/functions"
+    "config/neofetch"
+    "config/nvim"
+    # "bash_profile"
+    # "bashrc"
+    # "bash_aliases"
+    "clang-format"
+    # "ctags"
+    # "ghci"
+    "gitconfig"
+    "inputrc"
+    # "tmux"
+    # "tmux.conf"
+    # "minttyrc"
+)
 ##########
 
 # create dotfiles_old in homedir
