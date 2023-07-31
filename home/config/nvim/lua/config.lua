@@ -1,9 +1,9 @@
 -- spacebar leader
-vim.g.mapleader = " "
+vim.g.mapleader = ' '
 
 -- sessions
 vim.opt.sessionoptions = {
-    "folds", "help", "sesdir", "tabpages", "terminal", "winsize"
+    'folds', 'help', 'sesdir', 'tabpages', 'terminal', 'winsize'
 }
 
 -- editing
@@ -57,6 +57,3 @@ vim.opt.cinoptions:append {
 -- netrw
 vim.g.netrw_banner = 0
 vim.g.netrw_liststyle = 3
-vim.g.netrw_browse_split = 4
-vim.g.netrw_winsize = 30
-vim.g.netrw_keepdir = 0 -- make file operations always work

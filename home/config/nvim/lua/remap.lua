@@ -1,68 +1,73 @@
--- Lazy
-vim.keymap.set('n', '<Leader>l', '<Cmd>Lazy<CR>')
+local function noremap(mode, lhs, rhs, opts)
+    if opts then opts = vim.tbl_extend('keep', opts, {noremap=true, silent=true}) end
+    vim.keymap.set(mode, lhs, rhs, opts)
+end
 
 -- Remove F1 help
-vim.keymap.set({'n','i'},'<F1>','')
+vim.keymap.set({'n','o','v','i'},'<F1>','')
+
+-- pluginl manager
+noremap('n', '<Leader>l', '<Cmd>Lazy<CR>')
 
 -- Netrw
-vim.keymap.set('n', '<Leader>e', '<Cmd>Lexplore<CR>')
+noremap('n', '<Leader>e', '<Cmd>15Lexplore<CR>')
 
--- Move by screen lines instead of file lines, except in visual selection
-vim.keymap.set({'n','x'}, 'j', "v:count == 0 ? 'gj' : 'j'", {expr=true, silent=true})
-vim.keymap.set({'n','x'}, 'k', "v:count == 0 ? 'gk' : 'k'", {expr=true, silent=true})
+-- Change directory
+noremap('n', '<Leader>cd', '<Cmd>cd %:p:h<CR>')
+noremap('n', '<Leader>cl', '<Cmd>lcd %:p:h<CR>')
+
+-- Move by screen lines instead of file lines, unless count is specified
+noremap({'n','x'}, 'j', "v:count == 0 ? 'gj' : 'j'", {expr=true})
+noremap({'n','x'}, 'k', "v:count == 0 ? 'gk' : 'k'", {expr=true})
 
 -- Exit insert mode with jj or jk
-vim.keymap.set('i', 'jj', '<Esc>')
-vim.keymap.set('i', 'jk', '<Esc>')
+noremap('i', 'jj', '<Esc>')
+noremap('i', 'jk', '<Esc>')
 
--- Move highlighted lines
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
+-- Move and autoindent highlighted lines
+noremap('v', 'J', ":m '>+1<CR>gv=gv")
+noremap('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Maintain cursor position after join
-vim.keymap.set('n', 'J', 'm`J``')
+noremap('n', 'J', 'm`J``')
 
--- Recenter cursor on big moves
-vim.keymap.set('n', '<C-d>', '<C-d>zz')
-vim.keymap.set('n', '<C-u>', '<C-u>zz')
-vim.keymap.set('n', 'n', 'nzzzv')
-vim.keymap.set('n', 'N', 'Nzzzv')
--- including quickfix moves
-vim.keymap.set('n', '<C-k>', '<Cmd>cnext<CR>zz')
-vim.keymap.set('n', '<C-j>', '<Cmd>cprev<CR>zz')
-vim.keymap.set('n', '<C-k>', '<Cmd>lnext<CR>zz')
-vim.keymap.set('n', '<C-j>', '<Cmd>lprev<CR>zz')
+-- Quickfix navigation
+noremap('n', '<C-k>',   '<Cmd>cnext<CR>')
+noremap('n', '<C-j>',   '<Cmd>cprev<CR>')
+noremap('n', '<C-S-K>', '<Cmd>lnext<CR>')
+noremap('n', '<C-S-J>', '<Cmd>lprev<CR>')
 
 -- Nondestructive delete
-vim.keymap.set({'n','v'}, '<Leader>d', '"_d')
+noremap({'n','v'}, '<Leader>d', '"_d')
 
 -- Clipboard access
-vim.keymap.set({'n','v'}, '<Leader>y', '"+y')
-vim.keymap.set('n',       '<Leader>Y', '"+Y')
-vim.keymap.set({'n','v'}, '<Leader>p', '"+p')
+noremap({'n','v'}, '<Leader>y', '"+y')
+noremap('n',       '<Leader>Y', '"+Y')
+noremap({'n','v'}, '<Leader>p', '"+p')
 
 -- Replace all occurances
-vim.keymap.set('n', '<Leader>*', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+noremap('n', '<Leader>*', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- navigate windows with Alt-hjkl
 vim.o.winaltkeys = 'no'
-vim.keymap.set('n','<Esc>h', '<Cmd>wincmd h<CR>', {silent=true})
-vim.keymap.set('n','<Esc>j', '<Cmd>wincmd j<CR>', {silent=true})
-vim.keymap.set('n','<Esc>k', '<Cmd>wincmd k<CR>', {silent=true})
-vim.keymap.set('n','<Esc>l', '<Cmd>wincmd l<CR>', {silent=true})
-vim.keymap.set('n','<A-h>',  '<Cmd>wincmd h<CR>', {silent=true})
-vim.keymap.set('n','<A-j>',  '<Cmd>wincmd j<CR>', {silent=true})
-vim.keymap.set('n','<A-k>',  '<Cmd>wincmd k<CR>', {silent=true})
-vim.keymap.set('n','<A-l>',  '<Cmd>wincmd l<CR>', {silent=true})
-vim.keymap.set('t','<Esc>h', '<C-w>h', {silent=true})
-vim.keymap.set('t','<Esc>j', '<C-w>j', {silent=true})
-vim.keymap.set('t','<Esc>k', '<C-w>k', {silent=true})
-vim.keymap.set('t','<Esc>l', '<C-w>l', {silent=true})
-vim.keymap.set('t','<A-h>',  '<C-w>h', {silent=true})
-vim.keymap.set('t','<A-j>',  '<C-w>j', {silent=true})
-vim.keymap.set('t','<A-k>',  '<C-w>k', {silent=true})
-vim.keymap.set('t','<A-l>',  '<C-w>l', {silent=true})
+noremap('n','<Esc>h', '<Cmd>wincmd h<CR>')
+noremap('n','<Esc>j', '<Cmd>wincmd j<CR>')
+noremap('n','<Esc>k', '<Cmd>wincmd k<CR>')
+noremap('n','<Esc>l', '<Cmd>wincmd l<CR>')
+noremap('n','<A-h>',  '<Cmd>wincmd h<CR>')
+noremap('n','<A-j>',  '<Cmd>wincmd j<CR>')
+noremap('n','<A-k>',  '<Cmd>wincmd k<CR>')
+noremap('n','<A-l>',  '<Cmd>wincmd l<CR>')
+noremap('t','<Esc>h', '<C-w>h')
+noremap('t','<Esc>j', '<C-w>j')
+noremap('t','<Esc>k', '<C-w>k')
+noremap('t','<Esc>l', '<C-w>l')
+noremap('t','<A-h>',  '<C-w>h')
+noremap('t','<A-j>',  '<C-w>j')
+noremap('t','<A-k>',  '<C-w>k')
+noremap('t','<A-l>',  '<C-w>l')
 
--- toggle folds with leader space
-vim.keymap.set({'n','v'}, '<Leader><Space>', 'za')
-
+-- toggle folds with leader space, recursively with modifier-space
+noremap({'n','v'}, '<Leader><Space>',   'za')
+noremap({'n','v'}, '<Leader><C-Space>', 'zA') -- gui only
+noremap({'n','v'}, '<Leader><C-S-2>',   'zA') -- on terminal <C-Space> is <NUL> aka <C-@>

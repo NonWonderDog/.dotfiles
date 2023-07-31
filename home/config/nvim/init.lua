@@ -1,7 +1,7 @@
 -----------------------
 -- Environment setup --
 -----------------------
-vim.o.shell         = 'sh' -- can't use fish last I checked
+vim.o.shell         = 'sh'
 vim.o.ttimeoutlen   = 10   -- shorter 10 ms delay for terminal escape codes
 vim.o.title         = true -- update console title
 vim.o.termguicolors = true -- 24-bit color
@@ -40,7 +40,6 @@ end
 -------------------
 require("config")
 require("remap")
-require("plugins")
 
 -------------
 -- Plugins --
