@@ -9,6 +9,9 @@ noremap({'n','o','v','i'},'<F1>','')
 -- plugin manager
 noremap('n', '<Leader>l', '<Cmd>Lazy<CR>')
 
+-- Terminal
+noremap('n', '<Leader>t', '<Cmd>below split term://fish<CR>')
+
 -- Netrw
 noremap('n', '<Leader>e', '<Cmd>15Lexplore<CR>')
 
@@ -50,22 +53,10 @@ noremap('n', '<Leader>*', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
 
 -- navigate windows with Alt-hjkl
 vim.o.winaltkeys = 'no'
-noremap('n','<Esc>h', '<Cmd>wincmd h<CR>')
-noremap('n','<Esc>j', '<Cmd>wincmd j<CR>')
-noremap('n','<Esc>k', '<Cmd>wincmd k<CR>')
-noremap('n','<Esc>l', '<Cmd>wincmd l<CR>')
-noremap('n','<A-h>',  '<Cmd>wincmd h<CR>')
-noremap('n','<A-j>',  '<Cmd>wincmd j<CR>')
-noremap('n','<A-k>',  '<Cmd>wincmd k<CR>')
-noremap('n','<A-l>',  '<Cmd>wincmd l<CR>')
-noremap('t','<Esc>h', '<C-w>h')
-noremap('t','<Esc>j', '<C-w>j')
-noremap('t','<Esc>k', '<C-w>k')
-noremap('t','<Esc>l', '<C-w>l')
-noremap('t','<A-h>',  '<C-w>h')
-noremap('t','<A-j>',  '<C-w>j')
-noremap('t','<A-k>',  '<C-w>k')
-noremap('t','<A-l>',  '<C-w>l')
+noremap({'n','t'},'<A-h>',  '<Cmd>wincmd h<CR>')
+noremap({'n','t'},'<A-j>',  '<Cmd>wincmd j<CR>')
+noremap({'n','t'},'<A-k>',  '<Cmd>wincmd k<CR>')
+noremap({'n','t'},'<A-l>',  '<Cmd>wincmd l<CR>')
 
 -- toggle folds with leader space, recursively with modifier-space
 noremap({'n','v'}, '<Leader><Space>',   'za')

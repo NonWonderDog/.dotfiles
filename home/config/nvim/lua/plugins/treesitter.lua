@@ -6,9 +6,8 @@ return {
             local configs = require("nvim-treesitter.configs")
             configs.setup({
                 ensure_installed = {
-                    "vim", "vimdoc", "lua", "query", 
-                    "bash", "fish", "markdown_inline",
-                    "c", "cpp", "rust", "matlab",
+                    "vim", "vimdoc", "lua", "query",
+                    "bash", "fish", "markdown_inline"
                 },
                 sync_install = false,
                 auto_install = false,
