@@ -36,6 +36,7 @@ vim.o.showbreak   = '..'
 vim.o.breakindent = true
 
 -- text formatting
+vim.o.colorcolumn = 80
 vim.o.textwidth   = 79
 vim.opt.formatoptions:append('w','a')     -- format paragraphs by trailing space
 vim.opt.formatoptions:append('1','m','M') -- better line wrap
@@ -53,7 +54,3 @@ vim.opt.cinoptions:append {
 	'g0',  -- don't indent scope declarations
 	'N-s', -- don't indent namespace members
 }
-
--- netrw
-vim.g.netrw_banner = 0
-vim.g.netrw_liststyle = 3

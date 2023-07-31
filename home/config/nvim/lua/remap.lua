@@ -4,9 +4,9 @@ local function noremap(mode, lhs, rhs, opts)
 end
 
 -- Remove F1 help
-vim.keymap.set({'n','o','v','i'},'<F1>','')
+noremap({'n','o','v','i'},'<F1>','')
 
--- pluginl manager
+-- plugin manager
 noremap('n', '<Leader>l', '<Cmd>Lazy<CR>')
 
 -- Netrw
