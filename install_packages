@@ -7,6 +7,7 @@ packages=(
     "neovim" "diffutils" "ripgrep"
     "cowsay" "fortune-mod" "neofetch"
     "plantuml" "graphviz"
+    "make" "cmake"
 )
 
 sudo pacman -S --needed ${packages[@]}
