@@ -2,7 +2,7 @@ return {
     {
         'nvim-telescope/telescope.nvim',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function ()
+        config = function()
             local builtin = require('telescope.builtin')
             vim.keymap.set('n', '<C-p>',      builtin.git_files, {})
             vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
@@ -18,8 +18,11 @@ return {
         'nvim-telescope/telescope-fzf-native.nvim',
         dependencies = { 'nvim-telescope/telescope.nvim' },
         build = 'make',
-        config = function ()
-            require('telescope').load_extension('fzf')
-        end
+        cond = function()
+            return vim.fn.execute 'make' == 1
+        end,
+        config = function()
+            pcall(require('telescope').load_extension('fzf'))
+        end,
     }
 }

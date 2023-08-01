@@ -1,64 +1,69 @@
-local function noremap(mode, lhs, rhs, opts)
-    if opts then opts = vim.tbl_extend('keep', opts, {noremap=true, silent=true}) end
+local function map(mode, lhs, rhs, opts)
+    if opts then opts = vim.tbl_extend('keep', opts, {silent=true}) end
     vim.keymap.set(mode, lhs, rhs, opts)
 end
 
 -- Remove F1 help
-noremap({'n','o','v','i'},'<F1>','')
+map({'n','o','v','i'},'<F1>','')
 
 -- plugin manager
-noremap('n', '<Leader>l', '<Cmd>Lazy<CR>')
+map('n', '<Leader>l', '<Cmd>Lazy<CR>')
 
 -- Terminal
-noremap('n', '<Leader>t', '<Cmd>below split term://fish<CR>')
+map('n', '<Leader>t', "<Cmd>below split term://fish_greeting='' fish<CR>")
+
+-- Line numbering
+map('n', '<Leader>n', '<Cmd>set number! relativenumber!<CR>')
 
 -- Netrw
-noremap('n', '<Leader>e', '<Cmd>15Lexplore<CR>')
+if vim.fn.mapcheck('<Leader>e') == "" then
+    map('n', '<Leader>e', '<Cmd>15Lexplore<CR>', {unique=true})
+end
 
 -- Change directory
-noremap('n', '<Leader>cd', '<Cmd>cd %:p:h<CR>')
-noremap('n', '<Leader>cl', '<Cmd>lcd %:p:h<CR>')
+map('n', '<Leader>cd', '<Cmd>cd %:p:h<CR>')
+map('n', '<Leader>cl', '<Cmd>lcd %:p:h<CR>')
 
 -- Move by screen lines instead of file lines, unless count is specified
-noremap({'n','x'}, 'j', "v:count == 0 ? 'gj' : 'j'", {expr=true})
-noremap({'n','x'}, 'k', "v:count == 0 ? 'gk' : 'k'", {expr=true})
+map({'n','x'}, 'j', "v:count == 0 ? 'gj' : 'j'", {expr=true})
+map({'n','x'}, 'k', "v:count == 0 ? 'gk' : 'k'", {expr=true})
 
 -- Exit insert mode with jj or jk
-noremap('i', 'jj', '<Esc>')
-noremap('i', 'jk', '<Esc>')
+map('i', 'jj', '<Esc>')
+map('i', 'jk', '<Esc>')
 
 -- Move and autoindent highlighted lines
-noremap('v', 'J', ":m '>+1<CR>gv=gv")
-noremap('v', 'K', ":m '<-2<CR>gv=gv")
+map('v', 'J', ":m '>+1<CR>gv=gv")
+map('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Maintain cursor position after join
-noremap('n', 'J', 'm`J``')
+map('n', 'J', 'm`J``')
 
 -- Quickfix navigation
-noremap('n', '<C-k>',   '<Cmd>cnext<CR>')
-noremap('n', '<C-j>',   '<Cmd>cprev<CR>')
-noremap('n', '<C-S-K>', '<Cmd>lnext<CR>')
-noremap('n', '<C-S-J>', '<Cmd>lprev<CR>')
+map('n', '<C-k>',   '<Cmd>cnext<CR>')
+map('n', '<C-j>',   '<Cmd>cprev<CR>')
+map('n', '<C-S-K>', '<Cmd>lnext<CR>')
+map('n', '<C-S-J>', '<Cmd>lprev<CR>')
 
 -- Nondestructive delete
-noremap({'n','v'}, '<Leader>d', '"_d')
+map({'n','v'}, '<Leader>d', '"_d')
 
 -- Clipboard access
-noremap({'n','v'}, '<Leader>y', '"+y')
-noremap('n',       '<Leader>Y', '"+Y')
-noremap({'n','v'}, '<Leader>p', '"+p')
+map({'n','v'}, '<Leader>y', '"+y')
+map('n',       '<Leader>Y', '"+Y')
+map({'n','v'}, '<Leader>p', '"+p')
 
 -- Replace all occurances
-noremap('n', '<Leader>*', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+map('n', '<Leader>*', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- navigate windows with Alt-hjkl
 vim.o.winaltkeys = 'no'
-noremap({'n','t'},'<A-h>',  '<Cmd>wincmd h<CR>')
-noremap({'n','t'},'<A-j>',  '<Cmd>wincmd j<CR>')
-noremap({'n','t'},'<A-k>',  '<Cmd>wincmd k<CR>')
-noremap({'n','t'},'<A-l>',  '<Cmd>wincmd l<CR>')
+map({'n','t'},'<A-h>',  '<Cmd>wincmd h<CR>')
+map({'n','t'},'<A-j>',  '<Cmd>wincmd j<CR>')
+map({'n','t'},'<A-k>',  '<Cmd>wincmd k<CR>')
+map({'n','t'},'<A-l>',  '<Cmd>wincmd l<CR>')
 
 -- toggle folds with leader space, recursively with modifier-space
-noremap({'n','v'}, '<Leader><Space>',   'za')
-noremap({'n','v'}, '<Leader><C-Space>', 'zA') -- gui only
-noremap({'n','v'}, '<Leader><C-S-2>',   'zA') -- on terminal <C-Space> is <NUL> aka <C-@>
+map({'n','v'}, '<Leader><Space>',   'za')
+map({'n','v'}, '<Leader><C-Space>', 'zA') -- gui only
+map({'n','v'}, '<Leader><C-S-2>',   'zA') -- on terminal <C-Space> is <NUL> aka <C-@>

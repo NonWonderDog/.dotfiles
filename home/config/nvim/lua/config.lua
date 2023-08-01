@@ -14,6 +14,7 @@ vim.o.virtualedit = 'block' -- allow virtual editing in Visual block mode
 vim.o.listchars   = 'tab:►─,eol:¬,trail:·,nbsp:⁃,precedes:←,extends:→'
 vim.o.scrolloff   = 8
 vim.opt.diffopt:append {'vertical'}
+vim.wo.signcolumn = 'yes'
 
 -- search
 vim.o.ignorecase = true
@@ -37,10 +38,10 @@ vim.o.showbreak   = '..'
 vim.o.breakindent = true
 
 -- text formatting
-vim.o.colorcolumn = 80
+vim.o.colorcolumn = '80'
 vim.o.textwidth   = 79
-vim.opt.formatoptions:append('w','a')     -- format paragraphs by trailing space
-vim.opt.formatoptions:append('1','m','M') -- better line wrap
+vim.opt.formatoptions:append('wa')     -- format paragraphs by trailing space
+vim.opt.formatoptions:append('1mM') -- better line wrap
 
 vim.opt.formatoptions:append('n') -- recognize numbered lists
 vim.opt.formatlistpat:append([[\|^\s*[*-][\t ]\s*]]) -- and bulleted lists

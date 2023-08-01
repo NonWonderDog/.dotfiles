@@ -6,12 +6,12 @@ return {
         "nvim-tree/nvim-web-devicons",
         "MunifTanjim/nui.nvim",
     },
-    config = function ()
+    config = function()
         -- If you want icons for diagnostic errors, you'll need to define them somewhere:
-        vim.fn.sign_define("DiagnosticSignError", {text = " ", texthl = "DiagnosticSignError"})
-        vim.fn.sign_define("DiagnosticSignWarn",  {text = " ", texthl = "DiagnosticSignWarn"})
-        vim.fn.sign_define("DiagnosticSignInfo",  {text = " ", texthl = "DiagnosticSignInfo"})
-        vim.fn.sign_define("DiagnosticSignHint",  {text = "󰌵", texthl = "DiagnosticSignHint"})
+        vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+        vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
+        vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
+        vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 
         require("neo-tree").setup({
             close_if_last_window = true,
@@ -40,7 +40,6 @@ return {
             window = {
                 position = "left",
                 width = 30,
-                auto_expand_width = true,
                 mapping_options = {
                     noremap = true,
                     nowait = true,
@@ -141,6 +140,7 @@ return {
             }
         })
 
-        vim.keymap.set('n', '<Leader>e', '<Cmd>Neotree reveal<CR>')
+        vim.keymap.set('n', '<Leader>e', '<Cmd>Neotree reveal<CR>', { desc = '[E]xplore file tree' })
+        vim.keymap.set('n', '<Leader>E', '<Cmd>Neotree toggle show<CR>', { desc = 'toggle [E]xplore file tree' })
     end
 }
