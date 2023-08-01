@@ -1,0 +1,27 @@
+{
+    "workspace.library": [
+        "/home/rgmorr/.local/share/nvim/lazy/neodev.nvim/types/stable",
+        "/usr/share/nvim/runtime/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/kanagawa.nvim/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/nvim-web-devicons/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/mason-lspconfig.nvim/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/nui.nvim/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/nvim-cmp/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/Comment.nvim/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/lsp-zero.nvim/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/cmp-nvim-lsp/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/lazy.nvim/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/telescope.nvim/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/nvim-lspconfig/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/LuaSnip/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/neodev.nvim/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/nvim-treesitter/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/telescope-fzf-native.nvim/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/neo-tree.nvim/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/mason.nvim/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/newpaper.nvim/lua",
+        "/home/rgmorr/.local/share/nvim/lazy/plenary.nvim/lua",
+        "/home/rgmorr/.dotfiles/home/config/nvim/lua",
+        "${3rd}/luv/library"
+    ]
+}
