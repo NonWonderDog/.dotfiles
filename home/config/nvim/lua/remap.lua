@@ -33,8 +33,8 @@ map('i', 'jj', '<Esc>')
 map('i', 'jk', '<Esc>')
 
 -- Move and autoindent highlighted lines
-map('v', 'J', ":m '>+1<CR>gv=gv")
-map('v', 'K', ":m '<-2<CR>gv=gv")
+-- map('v', 'J', ":m '>+1<CR>gv=gv")
+-- map('v', 'K', ":m '<-2<CR>gv=gv")
 
 -- Maintain cursor position after join
 map('n', 'J', 'm`J``')

@@ -57,7 +57,7 @@ return {
             end, '[W]orkspace [L]ist Folders')
 
             nmap('<Leader>d', vim.diagnostic.open_float, 'Open floating [D]iagnostic message')
-            nmap('<Leader>e', vim.diagnostic.setloclist, 'Open diagnostics list')
+            nmap('<Leader>D', vim.diagnostic.setloclist, 'Open diagnostics list')
             nmap('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostic message')
             nmap(']d', vim.diagnostic.goto_next, 'Go to next diagnostic message')
 
