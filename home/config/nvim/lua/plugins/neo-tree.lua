@@ -141,6 +141,6 @@ return {
             }
         })
 
-        vim.keymap.set('n', '<Leader>e', '<Cmd>Neotree toggle reveal<CR>')
+        vim.keymap.set('n', '<Leader>e', '<Cmd>Neotree reveal<CR>')
     end
 }

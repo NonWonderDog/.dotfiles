@@ -8,6 +8,7 @@ packages=(
     "cowsay" "fortune-mod" "neofetch"
     "plantuml" "graphviz"
     "make" "cmake"
+    "tree"
 )
 
 sudo pacman -S --needed ${packages[@]}

@@ -1,5 +1,6 @@
 -- spacebar leader
-vim.g.mapleader = ' '
+vim.g.mapleader      = ' '
+vim.g.maplocalleader = ' '
 
 -- sessions
 vim.opt.sessionoptions = {
