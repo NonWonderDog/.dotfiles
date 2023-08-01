@@ -127,6 +127,11 @@ alias mktar 'tar -cvf'
 alias untar 'tar -xvf'
 alias vwtar 'tar -tvf'
 
+# neovim supremacy
+alias vim 'nvim'
+alias vimdiff 'nvim -d'
+set -gx EDITOR 'nvim'
+
 # svn diff
 function svndiff
     svn diff --diff-cmd colordiff | less -FRSX
