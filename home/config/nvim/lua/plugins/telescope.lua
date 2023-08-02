@@ -5,8 +5,8 @@ return {
         config = function()
             local builtin = require('telescope.builtin')
             vim.keymap.set('n', '<C-p>',      builtin.git_files,   { desc = 'Git Files' })
-            vim.keymap.set('n', '<Leader>gf', builtin.git_files,   { desc = '[G]it [F]iles' })
             vim.keymap.set('n', '<Leader>ff', builtin.find_files,  { desc = '[F]ind [F]iles' })
+            vim.keymap.set('n', '<Leader>fF', builtin.git_files,   { desc = '[F]ind git [F]iles' })
             vim.keymap.set('n', '<Leader>fr', builtin.oldfiles,    { desc = '[F]ind [R]ecent file' })
             vim.keymap.set('n', '<Leader>fg', builtin.live_grep,   { desc = '[F]ind by [G]rep' })
             vim.keymap.set('n', '<Leader>fb', builtin.buffers,     { desc = '[F]ind [B]uffers' })
@@ -23,6 +23,17 @@ return {
                     previewer = false,
                 })
             end, { desc = '[/] Fuzzy search in current buffer' })
+
+            local actions = require("telescope.actions")
+            require("telescope").setup {
+                defaults = {
+                    mappings = {
+                        i = {
+                            ["<Esc>"] = actions.close
+                        },
+                    },
+                }
+            }
         end
     },
     {

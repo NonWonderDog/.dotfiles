@@ -40,15 +40,19 @@ return {
             nmap('K', vim.lsp.buf.hover, 'Hover documentation')
             nmap('<Leader>k', vim.lsp.buf.signature_help, 'Signature documentation')
 
-            nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-            nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-            nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-            nmap('<Leader>T', vim.lsp.buf.type_definition, 'Goto [T]ype definition')
+            -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+            -- nmap('gD', vim.lsp.buf.type_definition, 'Goto type [D]efinition')
+            -- nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
             -- nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
+            nmap('gh', vim.lsp.buf.declaration, '[G]oto declaration (e.g in [H]eader)')
 
-            nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-            nmap('<Leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-            nmap('<Leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+            local telescope = require('telescope.builtin')
+            nmap('gd', telescope.lsp_definitions, '[G]oto [D]efinition')
+            nmap('gD', telescope.lsp_type_definitions, '[G]oto type [D]efinition')
+            nmap('gi', telescope.lsp_implementations, '[G]oto [I]mplementation')
+            nmap('gr', telescope.lsp_references, '[G]oto [R]eferences')
+            nmap('<Leader>s', telescope.lsp_document_symbols, 'Document [S]ymbols')
+            nmap('<Leader>S', telescope.lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
 
             nmap('<Leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
             nmap('<Leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
@@ -161,7 +165,7 @@ return {
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
                 ['<C-e>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
                 ['<C-Space>'] = cmp.mapping.complete {},
-                ['<C-S-2>'] = cmp.mapping.complete {},
+                ['<C-S-2>'] = cmp.mapping.complete {}, -- aka NUL aka C-Space
                 ['<CR>'] = cmp.mapping(cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }), {'i'}),
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then

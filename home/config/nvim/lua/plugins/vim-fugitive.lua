@@ -3,7 +3,7 @@ return {
         'tpope/vim-fugitive',
         config = function()
             -- vim.keymap.set('n', '<Leader>g', '<Cmd>Git<CR>')
-            vim.keymap.set('n', '<Leader>gg', function()
+            vim.keymap.set('n', '<Leader>g', function()
                 for _, w in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
                     local buf = vim.api.nvim_win_get_buf(w)
                     local name = vim.api.nvim_buf_get_name(buf)

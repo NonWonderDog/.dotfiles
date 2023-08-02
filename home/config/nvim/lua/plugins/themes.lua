@@ -12,4 +12,13 @@ return {
             require("kanagawa").load("wave")
         end
     },
+    {
+        'folke/todo-comments.nvim',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        opts = {},
+    },
+    {
+        'NvChad/nvim-colorizer.lua',
+        config = true,
+    },
 }
