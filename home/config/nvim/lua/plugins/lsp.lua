@@ -106,6 +106,16 @@ return {
         -- require('luasnip.loaders.from_snipmate').lazy_load()
         luasnip.config.setup()
 
+        local has_words_before = function()
+            unpack = unpack or table.unpack
+            local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+            return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
+        end
+
+        local t = function(str)
+            return vim.api.nvim_replace_termcodes(str, true, true, true)
+        end
+
         local cmp_config = {
             snippet = {
                 expand = function(args)
@@ -113,25 +123,66 @@ return {
                 end,
             },
             mapping = cmp.mapping.preset.insert {
-                ['<C-n>'] = cmp.mapping.select_next_item(),
-                ['<C-p>'] = cmp.mapping.select_next_item(),
+                ['<C-n>'] = cmp.mapping({ -- next when menu visible, else <C-n>
+                    c = function()
+                        if cmp.visible() then
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                        else
+                            vim.api.nvim_feedkeys(t('<Down>'), 'n', true)
+                        end
+                    end,
+                    i = function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                        else
+                            fallback()
+                        end
+                    end
+                }),
+                ['<C-p>'] = cmp.mapping({ -- previous when menu visible, else <C-n>
+                    c = function()
+                        if cmp.visible() then
+                            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                        else
+                            vim.api.nvim_feedkeys(t('<Up>'), 'n', true)
+                        end
+                    end,
+                    i = function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+                        else
+                            fallback()
+                        end
+                    end
+                }),
+                ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+                ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
                 ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                ['<C-e>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
                 ['<C-Space>'] = cmp.mapping.complete {},
                 ['<C-S-2>'] = cmp.mapping.complete {},
-                ['<CR>'] = cmp.mapping.confirm {
-                    behavior = cmp.ConfirmBehavior.Replace,
-                    select = true,
-                },
+                ['<CR>'] = cmp.mapping({
+                    i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
+                    c = function(fallback)
+                        if cmp.visible() then
+                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                        else
+                            fallback()
+                        end
+                    end
+                }),
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
                     elseif luasnip.expand_or_locally_jumpable() then
                         luasnip.expand_or_jump()
+                    elseif has_words_before() then
+                        cmp.complete()
                     else
                         fallback()
                     end
-                end, { 'i','s' }),
+                end, { 'i', 's' }),
                 ['<S-Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
@@ -140,12 +191,23 @@ return {
                     else
                         fallback()
                     end
-                end, { 'i','s' }),
+                end, { 'i', 's' }),
             },
             sources = {
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' },
             },
+            enabled = function()
+                -- disable completion in comments
+                local context = require 'cmp.config.context'
+                -- keep command mode completion enabled when cursor is in a comment
+                if vim.api.nvim_get_mode().mode == 'c' then
+                    return true
+                else
+                    return not context.in_treesitter_capture("comment")
+                        and not context.in_syntax_group("Comment")
+                end
+            end
         }
         cmp.setup(cmp_config)
     end
