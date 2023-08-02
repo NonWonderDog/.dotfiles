@@ -162,16 +162,7 @@ return {
                 ['<C-e>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
                 ['<C-Space>'] = cmp.mapping.complete {},
                 ['<C-S-2>'] = cmp.mapping.complete {},
-                ['<CR>'] = cmp.mapping({
-                    i = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
-                    c = function(fallback)
-                        if cmp.visible() then
-                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-                        else
-                            fallback()
-                        end
-                    end
-                }),
+                ['<CR>'] = cmp.mapping(cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }), {'i'}),
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
