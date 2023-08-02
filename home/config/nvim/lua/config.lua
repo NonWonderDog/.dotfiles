@@ -22,6 +22,7 @@ vim.o.smartcase  = true
 
 -- fold
 vim.o.foldmethod = 'syntax'
+vim.o.foldlevelstart = 99
 vim.opt.foldopen:remove {'block'} -- don't open folds with { } motions
 
 -- indent
