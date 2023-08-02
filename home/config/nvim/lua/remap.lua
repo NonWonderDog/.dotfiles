@@ -7,13 +7,17 @@ end
 map({'n','o','v','i'},'<F1>','')
 
 -- plugin manager
-map('n', '<Leader>l', '<Cmd>Lazy<CR>')
+map('n', '<Leader>L', '<Cmd>Lazy<CR>')
 
 -- Terminal
 map('n', '<Leader>t', "<Cmd>below split term://fish_greeting='' fish<CR>")
 
 -- Line numbering
 map('n', '<Leader>n', '<Cmd>set number! relativenumber!<CR>')
+
+-- Toggle quickfix (TODO)
+map('n', '<Leader>q', function() end, { desc = 'Toggle [Q]uickfix list' })
+map('n', '<Leader>l', function() end, { desc = 'Toggle [L]ocation list' })
 
 -- Netrw
 if vim.fn.mapcheck('<Leader>e') == "" then

@@ -43,7 +43,7 @@ return {
             nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
             nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
             nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-            nmap('gt', vim.lsp.buf.type_definition, '[G]oto [T]ype definition')
+            nmap('<Leader>T', vim.lsp.buf.type_definition, 'Goto [T]ype definition')
             -- nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
 
             nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
