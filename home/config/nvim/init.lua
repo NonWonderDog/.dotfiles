@@ -41,7 +41,7 @@ end
 -- Configuration --
 -------------------
 require("config")
-require("remap")
+require("mappings")
 
 -------------
 -- Plugins --
