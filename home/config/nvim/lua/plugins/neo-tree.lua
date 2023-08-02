@@ -205,7 +205,7 @@ return {
             }
         })
 
-        vim.keymap.set('n', '<Leader>e', '<Cmd>Neotree reveal<CR>', { desc = '[E]xplore file tree' })
+        vim.keymap.set('n', '<Leader>e', '<Cmd>Neotree reveal_force_cwd<CR>', { desc = '[E]xplore file tree' })
         vim.keymap.set('n', '<Leader>E', '<Cmd>Neotree toggle show<CR>', { desc = 'toggle [E]xplore file tree' })
     end
 }
