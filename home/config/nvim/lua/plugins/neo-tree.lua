@@ -81,6 +81,7 @@ return {
                     ["m"] = "move", -- takes text input for destination, also accepts the config.show_path and config.insert_as options
                     ["e"] = "toggle_auto_expand_width",
                     ["q"] = "close_window",
+                    ["<Leader>e"] = "close_window",
                     ["<"] = "prev_source",
                     [">"] = "next_source",
                 }
