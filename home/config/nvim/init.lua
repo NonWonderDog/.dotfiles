@@ -7,6 +7,7 @@ vim.o.timeoutlen    = 300  -- shorter 10 ms delay for terminal escape codes
 vim.o.ttimeoutlen   = 10   -- shorter 10 ms delay for terminal escape codes
 vim.o.title         = true -- update console title
 vim.o.termguicolors = true -- 24-bit color
+vim.fn.setenv("fish_greeting", "") -- no greeting in fish terminals
 
 -- recognize SJIS
 vim.go.fileencodings = 'ucs-bom,utf-8,sjis,default,latin1'

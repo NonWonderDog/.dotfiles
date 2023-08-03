@@ -57,3 +57,10 @@ vim.opt.cinoptions:append {
 	'g0',  -- don't indent scope declarations
 	'N-s', -- don't indent namespace members
 }
+
+-- terminal display
+vim.api.nvim_create_autocmd("TermOpen", {
+    callback = function()
+	vim.wo.signcolumn = "no"
+    end
+})

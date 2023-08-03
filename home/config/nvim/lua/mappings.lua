@@ -14,14 +14,20 @@ map('n', 'gH', '')
 map('n', '<Leader>L', '<Cmd>Lazy<CR>')
 
 -- Terminal
-map('n', '<Leader>t', "<Cmd>below split term://fish_greeting='' fish<CR>")
+if vim.fn.mapcheck('<Leader>t') == "" then
+    -- map('n', '<Leader>t', "<Cmd>below split term://fish<CR>")
+    map('n', '<Leader>t', function ()
+	vim.cmd("below split term://fish")
+	vim.cmd("startinsert!")
+    end)
+end
 
 -- Line numbering
 map('n', '<Leader>n', '<Cmd>set number! relativenumber!<CR>')
 
 -- Netrw
 if vim.fn.mapcheck('<Leader>e') == "" then
-    map('n', '<Leader>e', '<Cmd>15Lexplore<CR>', {unique=true})
+    map('n', '<Leader>e', '<Cmd>15Lexplore<CR>')
 end
 
 -- Change directory
@@ -62,10 +68,11 @@ map('n', '<Leader>*', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- navigate windows with Alt-hjkl
 vim.o.winaltkeys = 'no'
-map({'n','t'},'<A-h>',  '<Cmd>wincmd h<CR>')
-map({'n','t'},'<A-j>',  '<Cmd>wincmd j<CR>')
-map({'n','t'},'<A-k>',  '<Cmd>wincmd k<CR>')
-map({'n','t'},'<A-l>',  '<Cmd>wincmd l<CR>')
+map({'n','t'}, '<A-h>', '<Cmd>wincmd h<CR>')
+map({'n','t'}, '<A-j>', '<Cmd>wincmd j<CR>')
+map({'n','t'}, '<A-k>', '<Cmd>wincmd k<CR>')
+map({'n','t'}, '<A-l>', '<Cmd>wincmd l<CR>')
+map({'t'},     '<C-w>', [[<C-\><C-n><C-w>]]) -- make <C-w> work as normal in terminal
 
 -- toggle folds with leader space, recursively with modifier-space
 map({'n','v'}, '<Leader><Space>',   'za')
