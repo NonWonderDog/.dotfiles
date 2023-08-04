@@ -8,13 +8,14 @@ vim.opt.sessionoptions = {
 }
 
 -- editing
-vim.o.splitright  = true    -- vsplit to right
-vim.o.equalalways = false   -- don't resize on split
-vim.o.virtualedit = 'block' -- allow virtual editing in Visual block mode
-vim.o.listchars   = 'tab:►─,eol:¬,trail:·,nbsp:⁃,precedes:←,extends:→'
-vim.o.scrolloff   = 8
+vim.o.splitright    = true    -- vsplit to right
+vim.o.equalalways   = false   -- don't resize on split
+vim.o.virtualedit   = 'block' -- allow virtual editing in Visual block mode
+vim.o.listchars     = 'tab:►─,eol:¬,trail:·,nbsp:⁃,precedes:←,extends:→'
+vim.o.scrolloff     = 0
+vim.o.sidescrolloff = 8
+vim.wo.signcolumn   = 'yes'
 vim.opt.diffopt:append {'vertical'}
-vim.wo.signcolumn = 'yes'
 
 -- search
 vim.o.ignorecase = true
@@ -41,7 +42,8 @@ vim.o.breakindent = true
 -- text formatting
 vim.o.colorcolumn = '80'
 vim.o.textwidth   = 79
-vim.opt.formatoptions:append('wa')     -- format paragraphs by trailing space
+vim.opt.formatoptions:remove('t')   -- why is forced autoformat on
+vim.opt.formatoptions:append('wal') -- format paragraphs by trailing space
 vim.opt.formatoptions:append('1mM') -- better line wrap
 
 vim.opt.formatoptions:append('n') -- recognize numbered lists
@@ -58,9 +60,19 @@ vim.opt.cinoptions:append {
 	'N-s', -- don't indent namespace members
 }
 
--- terminal display
+-- terminal autocmds
+local termcmds = vim.api.nvim_create_augroup("MyTerminal", {})
 vim.api.nvim_create_autocmd("TermOpen", {
+    group = termcmds,
     callback = function()
 	vim.wo.signcolumn = "no"
+    end
+})
+vim.api.nvim_create_autocmd("TermClose", {
+    group = termcmds,
+    callback = function(ev)
+	if tonumber(vim.v.event['status']) == 0 then
+	    vim.cmd.bdelete { ev.buf, bang = true }
+	end
     end
 })

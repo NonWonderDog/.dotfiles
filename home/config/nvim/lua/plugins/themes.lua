@@ -21,7 +21,6 @@ return {
             vim.api.nvim_create_autocmd("TermOpen", {
                 callback = function()
                     vim.cmd.setlocal('winhighlight=Normal:NormalDark')
-                    vim.wo.signcolumn = "no"
                 end
             })
         end
