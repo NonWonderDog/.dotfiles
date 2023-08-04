@@ -130,6 +130,7 @@ alias vwtar 'tar -tvf'
 # neovim supremacy
 alias vim 'nvim'
 alias vimdiff 'nvim -d'
+alias vims 'nvim -S Session.vim'
 set -gx EDITOR 'nvim'
 
 # svn diff
