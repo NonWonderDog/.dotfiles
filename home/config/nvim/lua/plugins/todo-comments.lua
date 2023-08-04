@@ -12,13 +12,13 @@ return {
                 plug.jump_prev()
             end, { desc = "Previous todo comment" })
             plug.setup({
-                highlight = {
-                    pattern = [[.*<(KEYWORDS)\s*]], -- vim regex
-                    keyword = 'bg',
-                },
-                search = {
-                    pattern = [[\b(KEYWORDS)\b]], -- ripgrep regex
-                },
+                -- highlight = {
+                --     pattern = [[.*<(KEYWORDS)\s*]], -- don't require ':'
+                --     keyword = 'bg', -- don't highlight space after pattern
+                -- },
+                -- search = {
+                --     pattern = [[\b(KEYWORDS)\b]], -- don't require ':'
+                -- },
             })
         end
     },
