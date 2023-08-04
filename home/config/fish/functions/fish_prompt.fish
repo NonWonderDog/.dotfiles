@@ -66,7 +66,7 @@ function fish_prompt
         set -l suffix    $user_color "'-" $suffix
     end
 
-    echo    -s $leader $msys (prompt_login) ' ' $cwd_color (prompt_pwd) $normal (fish_vcs_prompt) $normal ' ' $prompt_status
+    echo    -s $leader $msys (prompt_login) ' ' $cwd_color (prompt_pwd -d 30) $normal (fish_vcs_prompt) $normal ' ' $prompt_status
     for job in (jobs); echo -s $jobleader $job; end
     echo -n -s $suffix ' ' $normal
 end
