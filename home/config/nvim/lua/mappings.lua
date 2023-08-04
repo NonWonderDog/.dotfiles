@@ -46,9 +46,6 @@ map('i', 'jk', '<Esc>')
 -- map('v', 'J', ":m '>+1<CR>gv=gv")
 -- map('v', 'K', ":m '<-2<CR>gv=gv")
 
--- Maintain cursor position after join
-map('n', 'J', 'm`J``')
-
 -- Quickfix navigation
 map('n', '<C-k>',   '<Cmd>cnext<CR>')
 map('n', '<C-j>',   '<Cmd>cprev<CR>')
