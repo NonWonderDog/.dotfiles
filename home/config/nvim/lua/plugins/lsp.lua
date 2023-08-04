@@ -189,7 +189,13 @@ return {
                 end, { 'i', 's' }),
             },
             sources = {
-                { name = 'nvim_lsp' },
+                {
+                    name = 'nvim_lsp',
+                    entry_filter = function(entry, _)
+                        -- don't suggest random words from the buffer
+                        return entry:get_kind() ~= require("cmp").lsp.CompletionItemKind.Text
+                    end,
+                },
                 { name = 'luasnip' },
             },
             enabled = function()
