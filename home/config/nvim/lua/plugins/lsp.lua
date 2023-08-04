@@ -72,7 +72,11 @@ return {
 
         local servers = {
             -- clangd = {},
-            -- rust_analyzer = {},
+            rust_analyzer = {
+                checkOnSave = {
+                    command = "clippy"
+                },
+            },
             lua_ls = {
                 Lua = {
                     workspace = { checkThirdParty = false },
