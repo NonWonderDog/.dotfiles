@@ -6,7 +6,7 @@ packages=(
     "neovim" "diffutils" "ripgrep" "tree"
     "base-devel" "cmake" "wget"
     "rustup" "clang" "lld"
-    "crosstool-ng"
+    "crosstool-ng" "qemu-user"
     "plantuml" "graphviz"
 )
 
