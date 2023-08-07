@@ -1,14 +1,22 @@
 #!/usr/bin/env bash
 
 packages=(
-    "fish"
-    "man-db"
+    "fish" "man-db" "cowsay" "fortune-mod" "neofetch"
     "git" "ssh-tools"
-    "neovim" "diffutils" "ripgrep"
-    "cowsay" "fortune-mod" "neofetch"
+    "neovim" "diffutils" "ripgrep" "tree"
+    "base-devel" "cmake" "wget"
+    "rustup" "clang" "lld"
+    "crosstool-ng"
     "plantuml" "graphviz"
-    "make" "cmake"
-    "tree"
 )
 
-sudo pacman -S --needed ${packages[@]}
+# only require sudo if we need new packages
+packages=$(comm -13 <(pacman -Qq | sort) <(printf '%s\n' "${packages[@]}" | sort))
+if [ -n "$packages" ]; then
+    sudo pacman -S --needed $packages
+fi
+
+rustup default stable # default toolchain
+rustup target add x86_64-pc-windows-gnu # Windows / libc
+rustup toolchain install nightly
+rustup +nightly component add rust-src
