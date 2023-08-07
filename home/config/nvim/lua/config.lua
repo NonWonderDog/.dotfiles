@@ -8,13 +8,15 @@ vim.opt.sessionoptions = {
 }
 
 -- editing
-vim.o.splitright    = true    -- vsplit to right
-vim.o.equalalways   = false   -- don't resize on split
-vim.o.virtualedit   = 'block' -- allow virtual editing in Visual block mode
-vim.o.listchars     = 'tab:►─,eol:¬,trail:·,nbsp:⁃,precedes:←,extends:→'
-vim.o.scrolloff     = 0
-vim.o.sidescrolloff = 8
-vim.wo.signcolumn   = 'yes'
+vim.o.splitright     = true    -- vsplit to right
+vim.o.equalalways    = false   -- don't resize on split
+vim.o.virtualedit    = 'block' -- allow virtual editing in Visual block mode
+vim.o.listchars      = 'tab:►─,eol:¬,trail:·,nbsp:⁃,precedes:←,extends:→'
+vim.o.scrolloff      = 0
+vim.o.sidescrolloff  = 8
+vim.wo.signcolumn    = 'number'
+vim.o.number         = true
+vim.o.relativenumber = true
 vim.opt.diffopt:append {'vertical'}
 
 -- search
@@ -67,6 +69,8 @@ vim.api.nvim_create_autocmd("TermOpen", {
     group = termcmds,
     callback = function()
 	vim.wo.signcolumn = "no"
+	vim.wo.number = false
+	vim.wo.relativenumber = false
     end
 })
 vim.api.nvim_create_autocmd("TermClose", {
