@@ -1,0 +1,2 @@
+#!/usr/bin/sh
+CT_PREFIX=/opt/ ct-ng build
