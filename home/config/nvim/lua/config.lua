@@ -25,6 +25,7 @@ vim.o.smartcase  = true
 vim.o.foldmethod = 'syntax'
 vim.o.foldlevelstart = 99
 vim.opt.foldopen:remove {'block'} -- don't open folds with { } motions
+vim.g.rust_fold = 2
 
 -- indent
 vim.o.tabstop     = 8    -- tabs are 8 spaces for POSIX compatibility

@@ -7,7 +7,8 @@ return {
             configs.setup({
                 ensure_installed = {
                     "vim", "vimdoc", "lua", "query",
-                    "bash", "fish", "markdown_inline"
+                    "bash", "fish", "markdown_inline",
+                    "rust",
                 },
                 ignore_install = {},
                 sync_install = false,
