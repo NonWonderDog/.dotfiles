@@ -26,7 +26,7 @@ return {
     },
     config = function()
         local on_attach = function(_, bufnr)
-            local nmap = function(keys,func,desc)
+            local nmap = function(keys, func, desc)
                 if desc then
                     desc = 'LSP: ' .. desc
                 end
@@ -73,8 +73,16 @@ return {
         local servers = {
             -- clangd = {},
             rust_analyzer = {
-                checkOnSave = {
-                    command = "clippy"
+                ["rust-analyzer"] = {
+                    checkOnSave = {
+                        command = "clippy",
+                    },
+                    rustfmt = {
+                        extraArgs = { "+nightly", },
+                    },
+                },
+                rustfmt = {
+                    rangeFormatting = { enable = true },
                 },
             },
             lua_ls = {
@@ -163,14 +171,15 @@ return {
                         end
                     end
                 }),
-                ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
-                ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), {'i'}),
+                ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { 'i' }),
+                ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { 'i' }),
                 ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
                 ['<C-e>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
                 ['<C-Space>'] = cmp.mapping.complete {},
                 ['<C-S-2>'] = cmp.mapping.complete {}, -- aka NUL aka C-Space
-                ['<CR>'] = cmp.mapping(cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }), {'i'}),
+                ['<CR>'] = cmp.mapping(cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }), {
+                    'i' }),
                 ['<Tab>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
