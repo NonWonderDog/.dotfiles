@@ -14,6 +14,7 @@ return {
                     local theme = colors.theme
                     return {
                         NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
+                        Folded = { fg = theme.ui.special, bg = theme.ui.bg },
                     }
                 end,
             })
