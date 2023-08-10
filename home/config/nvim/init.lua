@@ -22,20 +22,18 @@ end
 vim.o.undofile = true
 
 -- WSL clipboard
-if vim.fn.executable('clip.exe') then
-    vim.cmd([[
-        let g:clipboard = {
-        \   'name': 'WslClipboard',
-        \   'copy': {
-        \      '+': 'clip.exe',
-        \      '*': 'clip.exe',
-        \    },
-        \   'paste': {
-        \      '+': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-        \      '*': 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-        \   },
-        \   'cache_enabled': 0,
-        \ }]])
+if vim.fn.has('wsl') then
+    vim.g.clipboard = {
+        name = 'wsl-clipboard',
+        copy = {
+            ["+"] = function(lines, _) vim.fn.system('iconv -f utf-8 -t utf-16le | clip.exe', lines) end,
+            ["*"] = function(lines, _) vim.fn.system('iconv -f utf-8 -t utf-16le | clip.exe', lines) end,
+        },
+        paste = {
+            ["+"] = 'powershell.exe -c [Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            ["*"] = 'powershell.exe -c [Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+        },
+    }
 end
 
 -------------------
