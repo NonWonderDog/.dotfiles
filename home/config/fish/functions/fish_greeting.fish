@@ -6,7 +6,7 @@ function fish_greeting
         if command -q cowfortune
             set art "$(cowfortune)"
         else if command -q fortune; and command -q cowsay
-            set -l cow (find /usr/share/cows -type f -name "*.cow" | shuf -n1)
+            set -l cow (find /usr/share/cowsay/cows -type f -name "*.cow" | shuf -n1)
             set -l cowsay (shuf -n1 -e "cowsay" "cowthink")
             set art "\${c1}$(fortune | $cowsay -f $cow -W 60)"
         end
