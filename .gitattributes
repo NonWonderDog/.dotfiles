@@ -5,3 +5,7 @@ install eol=lf
 *.bat eol=crlf
 *.ps1 eol=crlf
 
+# Windows line endings on CANalyzer skeleton files
+*.can eol=crlf
+*.cin eol=crlf
+
