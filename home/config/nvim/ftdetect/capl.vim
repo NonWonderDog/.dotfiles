@@ -44,6 +44,6 @@ endfunction
 
 au BufRead *.can,*.cin call s:enc_detect() | setlocal ft=c
 
-au BufNewFile *.can,*.cin setlocal ft=c fenc=utf-8 ff=dos
+au BufNewFile *.can,*.cin setlocal ft=c fenc=cp1252 ff=dos
 au BufNewFile *.can 0r ~/.config/nvim/skeleton/skeleton.can
 au BufNewFile *.cin 0r ~/.config/nvim/skeleton/skeleton.cin
