@@ -18,6 +18,8 @@ vim.wo.signcolumn    = 'number'
 vim.o.number         = true
 vim.o.relativenumber = true
 vim.opt.diffopt:append {'vertical'}
+-- vim.o.winwidth       = 80 -- autoresize windows to keep minimum size
+-- vim.o.winheight      = 24 -- autoresize windows to keep minimum size
 
 -- search
 vim.o.ignorecase = true
@@ -47,7 +49,7 @@ vim.o.colorcolumn = '80'
 vim.o.textwidth   = 79
 vim.opt.formatoptions:remove('t')   -- why is forced autoformat on
 vim.opt.formatoptions:append('wal') -- format paragraphs by trailing space
-vim.opt.formatoptions:append('1mM') -- better line wrap
+vim.opt.formatoptions:append('1') -- better line wrap
 
 vim.opt.formatoptions:append('n') -- recognize numbered lists
 vim.opt.formatlistpat:append([[\|^\s*[*-][\t ]\s*]]) -- and bulleted lists
@@ -81,3 +83,6 @@ vim.api.nvim_create_autocmd("TermClose", {
 	end
     end
 })
+
+-- netrw
+vim.g.netrw_banner = 0

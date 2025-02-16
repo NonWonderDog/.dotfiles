@@ -3,7 +3,7 @@
 -----------------------
 vim.o.shell         = 'sh'
 vim.o.updatetime    = 250
-vim.o.timeoutlen    = 300  -- shorter 10 ms delay for terminal escape codes
+vim.o.timeoutlen    = 500  -- shorter delay for key combinations
 vim.o.ttimeoutlen   = 10   -- shorter 10 ms delay for terminal escape codes
 vim.o.title         = true -- update console title
 vim.o.termguicolors = true -- 24-bit color
