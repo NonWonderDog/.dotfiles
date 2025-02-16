@@ -7,7 +7,8 @@ packages=(
     "base-devel" "cmake" "wget"
     "rustup" "clang" "lld"
     "crosstool-ng" "qemu-user"
-    "plantuml" "graphviz"
+    "neovim"
+    # "plantuml" "graphviz"
 )
 
 # only require sudo if we need new packages
