@@ -146,7 +146,6 @@ return {
                 end,
             },
             mapping = cmp.mapping.preset.insert {
-                ['<Esc>'] = cmp.mapping.abort(),
                 ['<C-n>'] = cmp.mapping({ -- next when menu visible, else <C-n>
                     c = function()
                         if cmp.visible() then
@@ -183,6 +182,7 @@ return {
                 ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { 'i' }),
                 ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                ['<C-l>'] = cmp.mapping.abort(),
                 ['<C-e>'] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         local entry = cmp.get_selected_entry()
