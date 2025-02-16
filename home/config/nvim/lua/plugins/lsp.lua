@@ -221,7 +221,10 @@ return {
                     return not context.in_treesitter_capture("comment")
                         and not context.in_syntax_group("Comment")
                 end
-            end
+            end,
+            formatting = {
+                format = require("nvim-highlight-colors").format
+            }
         }
         cmp.setup(cmp_config)
     end
