@@ -2,7 +2,7 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
         -- package manager
-        { 'williamboman/mason.nvim', config = true },
+        { 'williamboman/mason.nvim', opts = {} },
         'williamboman/mason-lspconfig.nvim',
 
         -- status updates
@@ -10,18 +10,22 @@ return {
             'j-hui/fidget.nvim',
             tag = 'legacy',
             event = 'LspAttach',
-            config = true
+            opts = {}
         },
 
         -- Neovim Lua
         'folke/neodev.nvim',
 
         -- Autocompletion
-        'hrsh7th/nvim-cmp',
+        {
+            'hrsh7th/nvim-cmp',
+            event = { "InsertEnter", "CmdlineEnter" },
+        },
         'hrsh7th/cmp-nvim-lsp',
 
         -- Snippets
         'L3MON4D3/LuaSnip',
+        'rafamadriz/friendly-snippets',
         'saadparwaiz1/cmp_luasnip',
     },
     config = function()
@@ -62,8 +66,10 @@ return {
 
             nmap('<Leader>d', vim.diagnostic.open_float, 'Open floating [D]iagnostic message')
             nmap('<Leader>D', vim.diagnostic.setloclist, 'Open diagnostics list')
-            nmap('[d', vim.diagnostic.goto_prev, 'Go to previous diagnostic message')
-            nmap(']d', vim.diagnostic.goto_next, 'Go to next diagnostic message')
+            nmap('[d', function() vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.INFO } }); end,
+                'Go to previous diagnostic message')
+            nmap(']d', function() vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.INFO } }); end,
+                'Go to next diagnostic message')
 
             vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
                 vim.lsp.buf.format()
@@ -78,7 +84,7 @@ return {
                         command = "clippy",
                     },
                     rustfmt = {
-                        extraArgs = { "+nightly", },
+                        extraArgs = { "+nightly" },
                     },
                 },
                 rustfmt = {
@@ -100,6 +106,7 @@ return {
 
         local mason_lspconfig = require 'mason-lspconfig'
         mason_lspconfig.setup {
+            automatic_installation = true,
             ensure_installed = vim.tbl_keys(servers),
         }
 
@@ -118,7 +125,7 @@ return {
         local luasnip = require 'luasnip'
 
         -- load VS Code or SnipMate snippets from plugins
-        -- require('luasnip.loaders.from_vscode').lazy_load()
+        require('luasnip.loaders.from_vscode').lazy_load()
         -- require('luasnip.loaders.from_snipmate').lazy_load()
         luasnip.config.setup()
 
@@ -139,6 +146,7 @@ return {
                 end,
             },
             mapping = cmp.mapping.preset.insert {
+                ['<Esc>'] = cmp.mapping.abort(),
                 ['<C-n>'] = cmp.mapping({ -- next when menu visible, else <C-n>
                     c = function()
                         if cmp.visible() then
@@ -175,31 +183,69 @@ return {
                 ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { 'i' }),
                 ['<C-d>'] = cmp.mapping.scroll_docs(-4),
                 ['<C-f>'] = cmp.mapping.scroll_docs(4),
-                ['<C-e>'] = cmp.mapping({ i = cmp.mapping.close(), c = cmp.mapping.close() }),
+                ['<C-e>'] = cmp.mapping(function(fallback)
+                    if cmp.visible() then
+                        local entry = cmp.get_selected_entry()
+                        if not entry then
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+                        end
+                        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace })
+                    else
+                        fallback()
+                    end
+                end, { 'i', 's' }),
                 ['<C-Space>'] = cmp.mapping.complete {},
                 ['<C-S-2>'] = cmp.mapping.complete {}, -- aka NUL aka C-Space
-                ['<CR>'] = cmp.mapping(cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }), {
-                    'i' }),
-                ['<Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_next_item()
-                    elseif luasnip.expand_or_locally_jumpable() then
-                        luasnip.expand_or_jump()
-                    elseif has_words_before() then
-                        cmp.complete()
-                    else
-                        fallback()
+                ["<CR>"] = cmp.mapping({
+                    i = function(fallback)
+                        if cmp.visible() and cmp.get_active_entry() then
+                            cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                        else
+                            fallback()
+                        end
+                    end,
+                    s = cmp.mapping.confirm({ select = true }),
+                    c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+                }),
+                ["<Tab>"] = cmp.mapping({
+                    i = function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+                        elseif luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        else
+                            fallback()
+                        end
+                    end,
+                    s = function(fallback)
+                        if luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        else
+                            fallback()
+                        end
                     end
-                end, { 'i', 's' }),
-                ['<S-Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        cmp.select_prev_item()
-                    elseif luasnip.locally_jumpable(-1) then
-                        luasnip.jump(-1)
-                    else
-                        fallback()
+                }),
+                ["<S-Tab>"] = cmp.mapping({
+                    i = function(fallback)
+                        if cmp.visible() then
+                            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
+                        elseif luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end,
+                    s = function(fallback)
+                        if luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
                     end
-                end, { 'i', 's' }),
+                }),
+            },
+            experimental = {
+                ghost_text = true
             },
             sources = {
                 {
