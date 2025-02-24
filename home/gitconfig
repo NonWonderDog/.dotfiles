@@ -25,3 +25,7 @@
 
 # vim: ft=gitconfig
 
+[rerere]
+	enabled = true
+[init]
+	defaultBranch = main
