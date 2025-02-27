@@ -149,6 +149,10 @@ if [ $status -eq 2 ]
     start_ssh_agent
 end
 
+# configure GPG agent
+set -gx GPG_TTY (tty)
+set -gx GPG_AGENT_INFO (gpgconf --list-dirs agent-socket | tr -d '\n' && echo -n '::')
+
 # Launch tmux if interactive
 # if status --is-interactive
 #     if [ -z "$TMUX" ]
