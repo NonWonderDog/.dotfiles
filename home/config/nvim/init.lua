@@ -30,8 +30,8 @@ if vim.fn.has('wsl') then
             ["*"] = function(lines, _) vim.fn.system('iconv -f utf-8 -t utf-16le | clip.exe', lines) end,
         },
         paste = {
-            ["+"] = 'powershell.exe -c [Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-            ["*"] = 'powershell.exe -c [Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            ["+"] = 'powershell.exe -noprofile -c [Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+            ["*"] = 'powershell.exe -noprofile -c [Console]::OutputEncoding=[System.Text.UTF8Encoding]::new(); [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
         },
     }
 end
