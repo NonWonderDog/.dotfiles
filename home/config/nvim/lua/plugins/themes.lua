@@ -15,6 +15,10 @@ return {
                     return {
                         NormalDark = { fg = theme.ui.fg_dim, bg = theme.ui.bg_m3 },
                         Folded = { fg = theme.ui.special, bg = theme.ui.bg },
+                        ["@keyword.directive"] = { link = "PreProc" },
+                        ["@constant.builtin"] = { link = "Constant" },
+                        ["@comment.documentation"] = { fg = theme.diag.hint, italic = true },
+                        ["@string.documentation"] = { fg = theme.diag.hint },
                     }
                 end,
             })
