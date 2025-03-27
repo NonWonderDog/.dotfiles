@@ -7,7 +7,7 @@ packages=(
     "base-devel" "cmake" "wget"
     "rustup" "clang" "lld"
     "crosstool-ng" "qemu-user"
-    "neovim"
+    "neovim" "rg" "fd"
     # "plantuml" "graphviz"
 )
 
