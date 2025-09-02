@@ -4,10 +4,10 @@ packages=(
     "fish" "man-db" "cowsay" "fortune-mod" "neofetch"
     "git" "ssh-tools"
     "neovim" "diffutils" "ripgrep" "tree"
-    "base-devel" "cmake" "wget"
+    "base-devel" "cmake"
     "rustup" "clang" "lld"
     "crosstool-ng" "qemu-user"
-    "neovim" "rg" "fd"
+    "neovim" "rg" "fd" "unzip" "wget" "curl"
     # "plantuml" "graphviz"
 )
 

@@ -2,8 +2,8 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
         -- package manager
-        { 'williamboman/mason.nvim', opts = {} },
-        'williamboman/mason-lspconfig.nvim',
+        { 'mason-org/mason.nvim', opts = {} },
+        'mason-org/mason-lspconfig.nvim',
 
         -- status updates
         {
@@ -29,75 +29,46 @@ return {
         'saadparwaiz1/cmp_luasnip',
     },
     config = function()
-        local on_attach = function(_, bufnr)
-            local nmap = function(keys, func, desc)
-                if desc then
-                    desc = 'LSP: ' .. desc
-                end
-                vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+        local nmap = function(keys, func, desc)
+            if desc then
+                desc = 'LSP: ' .. desc
             end
-
-            nmap('<F2>', vim.lsp.buf.rename, 'Rename')
-            nmap('<F3>', function() vim.lsp.buf.format() end, 'Format current buffer with LSP')
-            nmap('<F4>', vim.lsp.buf.code_action, 'Code Action')
-
-            nmap('K', vim.lsp.buf.hover, 'Hover documentation')
-            nmap('<Leader>k', vim.lsp.buf.signature_help, 'Signature documentation')
-
-            -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-            -- nmap('gD', vim.lsp.buf.type_definition, 'Goto type [D]efinition')
-            -- nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-            -- nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
-            nmap('gh', vim.lsp.buf.declaration, '[G]oto declaration (e.g in [H]eader)')
-
-            local telescope = require('telescope.builtin')
-            nmap('gd', telescope.lsp_definitions, '[G]oto [D]efinition')
-            nmap('gD', telescope.lsp_type_definitions, '[G]oto type [D]efinition')
-            nmap('gi', telescope.lsp_implementations, '[G]oto [I]mplementation')
-            nmap('gr', telescope.lsp_references, '[G]oto [R]eferences')
-            nmap('<Leader>s', telescope.lsp_document_symbols, 'Document [S]ymbols')
-            nmap('<Leader>S', telescope.lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
-
-            nmap('<Leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-            nmap('<Leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-            nmap('<Leader>wl', function()
-                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-            end, '[W]orkspace [L]ist Folders')
-
-            nmap('<Leader>d', vim.diagnostic.open_float, 'Open floating [D]iagnostic message')
-            nmap('<Leader>D', vim.diagnostic.setloclist, 'Open diagnostics list')
-            nmap('[d', function() vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.INFO } }); end,
-                'Go to previous diagnostic message')
-            nmap(']d', function() vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.INFO } }); end,
-                'Go to next diagnostic message')
-
-            vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-                vim.lsp.buf.format()
-            end, { desc = 'Format current buffer with LSP' })
+            vim.keymap.set('n', keys, func, { desc = desc })
         end
 
-        local servers = {
-            -- clangd = {},
-            rust_analyzer = {
-                ["rust-analyzer"] = {
-                    checkOnSave = {
-                        command = "clippy",
-                    },
-                    rustfmt = {
-                        extraArgs = { "+nightly" },
-                    },
-                },
-                rustfmt = {
-                    rangeFormatting = { enable = true },
-                },
-            },
-            lua_ls = {
-                Lua = {
-                    workspace = { checkThirdParty = false },
-                    telemetry = { enable = false },
-                },
-            },
-        }
+        nmap('<F2>', vim.lsp.buf.rename, 'Rename')
+        nmap('<F3>', function() vim.lsp.buf.format() end, 'Format current buffer with LSP')
+        nmap('<F4>', vim.lsp.buf.code_action, 'Code Action')
+
+        nmap('K', vim.lsp.buf.hover, 'Hover documentation')
+        nmap('<Leader>k', vim.lsp.buf.signature_help, 'Signature documentation')
+
+        -- nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+        -- nmap('gD', vim.lsp.buf.type_definition, 'Goto type [D]efinition')
+        -- nmap('gi', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+        -- nmap('gr', vim.lsp.buf.references, '[G]oto [R]eferences')
+        nmap('gh', vim.lsp.buf.declaration, '[G]oto declaration (e.g in [H]eader)')
+
+        local telescope = require('telescope.builtin')
+        nmap('gd', telescope.lsp_definitions, '[G]oto [D]efinition')
+        nmap('gD', telescope.lsp_type_definitions, '[G]oto type [D]efinition')
+        nmap('gi', telescope.lsp_implementations, '[G]oto [I]mplementation')
+        nmap('gr', telescope.lsp_references, '[G]oto [R]eferences')
+        nmap('<Leader>s', telescope.lsp_document_symbols, 'Document [S]ymbols')
+        nmap('<Leader>S', telescope.lsp_dynamic_workspace_symbols, 'Workspace [S]ymbols')
+
+        nmap('<Leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+        nmap('<Leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+        nmap('<Leader>wl', function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+        end, '[W]orkspace [L]ist Folders')
+
+        nmap('<Leader>d', vim.diagnostic.open_float, 'Open floating [D]iagnostic message')
+        nmap('<Leader>D', vim.diagnostic.setloclist, 'Open diagnostics list')
+        nmap('[d', function() vim.diagnostic.goto_prev({ severity = { min = vim.diagnostic.severity.INFO } }); end,
+            'Go to previous diagnostic message')
+        nmap(']d', function() vim.diagnostic.goto_next({ severity = { min = vim.diagnostic.severity.INFO } }); end,
+            'Go to next diagnostic message')
 
         require('neodev').setup()
 
@@ -107,18 +78,7 @@ return {
         local mason_lspconfig = require 'mason-lspconfig'
         mason_lspconfig.setup {
             automatic_installation = true,
-            ensure_installed = vim.tbl_keys(servers),
-        }
-
-        mason_lspconfig.setup_handlers {
-            function(server_name)
-                require('lspconfig')[server_name].setup {
-                    capabilities = capabilities,
-                    on_attach = on_attach,
-                    settings = servers[server_name],
-                    filetypes = (servers[server_name] or {}).filetypes,
-                }
-            end
+            ensure_installed = { 'rust_analyzer', 'lua_ls' }
         }
 
         local cmp = require 'cmp'
@@ -128,12 +88,6 @@ return {
         require('luasnip.loaders.from_vscode').lazy_load()
         -- require('luasnip.loaders.from_snipmate').lazy_load()
         luasnip.config.setup()
-
-        local has_words_before = function()
-            unpack = unpack or table.unpack
-            local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-            return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
-        end
 
         local t = function(str)
             return vim.api.nvim_replace_termcodes(str, true, true, true)

@@ -7,6 +7,18 @@ vim.opt.sessionoptions = {
     'folds', 'help', 'sesdir', 'tabpages', 'terminal', 'winsize'
 }
 
+-- diagnostics
+vim.diagnostic.config({
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = "",
+            [vim.diagnostic.severity.INFO] = "",
+            [vim.diagnostic.severity.HINT] = "󰌵",
+        }
+    },
+})
+
 -- editing
 vim.o.splitright     = true    -- vsplit to right
 vim.o.equalalways    = false   -- don't resize on split
