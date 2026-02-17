@@ -29,3 +29,5 @@
 	enabled = true
 [init]
 	defaultBranch = main
+[http]
+	sslVerify = false

@@ -7,7 +7,7 @@ return {
                 ensure_installed = {
                     "c", "vim", "vimdoc", "lua", "query",
                     "bash", "fish", "markdown_inline",
-                    "rust", "python"
+                    "rust", "python", "doxygen"
                 },
                 ignore_install = {},
                 sync_install = false,

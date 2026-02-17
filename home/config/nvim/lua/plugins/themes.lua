@@ -2,7 +2,10 @@ return {
     {
         'yorik1984/newpaper.nvim',
         lazy = false,
-        priority = 1000
+        priority = 1000,
+        config = function()
+            require("newpaper").setup()
+        end,
     },
     {
         'rebelot/kanagawa.nvim',
@@ -17,8 +20,8 @@ return {
                         Folded = { fg = theme.ui.special, bg = theme.ui.bg },
                         ["@keyword.directive"] = { link = "PreProc" },
                         ["@constant.builtin"] = { link = "Constant" },
-                        ["@comment.documentation"] = { fg = theme.diag.hint, italic = true },
-                        ["@string.documentation"] = { fg = theme.diag.hint },
+                        ["@comment.documentation"] = { fg = theme.diag.info, italic = true },
+                        ["@string.documentation"] = { fg = theme.diag.info },
                     }
                 end,
             })
@@ -28,6 +31,6 @@ return {
                     vim.cmd.setlocal('winhighlight=Normal:NormalDark')
                 end
             })
-        end
+        end,
     },
 }
