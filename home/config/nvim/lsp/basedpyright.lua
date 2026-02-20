@@ -11,7 +11,6 @@ return {
         basedpyright = {
             disableOrganizeImports = true, -- ruff
             analysis = {
-                typeCheckingMode = "basic",
                 diagnosticSeverityOverrides = {
                     reportUnusedVariable = "none", -- ruff
                     reportUnusedImport = "none", -- ruff
