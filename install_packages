@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 packages=(
-    "fish" "man-db" "cowsay" "fortune-mod" "neofetch"
+    "fish" "man-db" "cowsay" "fortune-mod" "fastfetch"
     "git" "ssh-tools"
     "neovim" "diffutils" "ripgrep" "tree"
     "base-devel" "cmake"
