@@ -6,7 +6,7 @@ return {
             require('nvim-treesitter.configs').setup({
                 ensure_installed = {
                     "c", "vim", "vimdoc", "lua", "query",
-                    "bash", "fish", "markdown_inline",
+                    "bash", "fish", "markdown", "markdown_inline",
                     "rust", "python", "doxygen"
                 },
                 ignore_install = {},
