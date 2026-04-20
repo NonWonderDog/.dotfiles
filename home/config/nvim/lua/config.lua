@@ -58,7 +58,7 @@ vim.o.breakindent = true
 
 -- text formatting
 vim.o.colorcolumn = '80'
-vim.o.textwidth   = 79
+vim.o.textwidth   = 80
 vim.opt.formatoptions:remove('t')   -- why is forced autoformat on
 vim.opt.formatoptions:append('wal') -- format paragraphs by trailing space
 vim.opt.formatoptions:append('1') -- better line wrap
